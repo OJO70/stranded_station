@@ -2,3 +2,9 @@
 - It must be clear what options the user has. 
 - It must be clear where the user is.
 - Spelling and grammer must be correct.
+
+A user story can enter a sprint only when all these conditions are met:
+It has a unique story ID and uses “As a…, I want…, so that…”.
+Its acceptance criteria describe clear, observable behaviour and are specific enough to become unit tests.
+Relevant success, failure and boundary cases are identified.
+Everyone understands its scope and the whole team has agreed an estimate.
