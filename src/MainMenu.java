@@ -15,7 +15,7 @@ public class MainMenu {
         System.out.println("[3] STORY \n");
         System.out.println("[4] EXIT PROGRAM \n");
 
-        int read_menu_number = Integer.parseInt(stdin.nextLine());
+        int read_menu_number = new UUtils().consoleInt();
 
         if (read_menu_number == 1)
         {
