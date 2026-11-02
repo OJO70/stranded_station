@@ -1,11 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
         
-    MainMenu();        
+    MainMenu.MainMenu();        
 
-    }
-
-    public static void MainMenu() throws Exception {
-        return;
     }
 }
