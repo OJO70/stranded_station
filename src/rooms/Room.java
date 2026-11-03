@@ -1,5 +1,10 @@
 package rooms;
 
+/**
+ * @deprecated This class is deprecated and should not be used directly. Use RoomTemplate instead.
+ * This class will be left for example purposes ONLY!!!
+ * Room
+ */
 public class Room implements RoomInterface {
 
     protected Room north = null;

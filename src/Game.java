@@ -2,16 +2,38 @@ import rooms.*;
 
 public class Game {
 
-    private static Room templateRoom = new RoomTemplate();
 
-    /* string linked to current location
-     * Can be changed to a class call for more genralised code later.
-     */
-    private static Room currentLocation = templateRoom;
+
+    
 
     /* Does the player have the key? */
     private static boolean hasKey = false;
 
+    private static RoomInterface templateRoom = new RoomTemplate();
+
+    /* Array to store all rooms */
+    private static RoomInterface observationDeck = null;
+    private static RoomInterface labratory = null;
+    private static RoomInterface centeralCorridor = null;
+    private static RoomInterface crewCabin = null;
+    private static RoomInterface storageRoom = null;
+    private static RoomInterface airlock = null;
+    private static RoomInterface escapePod = null;
+
+    /* string linked to current location
+     * Can be changed to a class call for more genralised code later.
+     */
+    private static RoomInterface currentLocation = templateRoom;
+
+    /**
+     * Initialise the game map by setting up all rooms and their connections.
+     * ToDo:
+     * - [ ] Implement the game map initialisation logic
+     * - [ ] Implement the game map room connections
+     */
+    public static void initiliseGameMap(){
+
+    }
 
 
     /**
@@ -33,13 +55,13 @@ public class Game {
     
 
     /**
-     * 
+     * Game direction logic may be able to simplify.
      * @param direction
      */
     public static void goCommand(final String direction)
     {
 
-        Room nextRoom = null;
+        RoomInterface nextRoom = null;
         if (direction.equals("north")) {
             nextRoom = currentLocation.getNorth();
         } else if (direction.equals("south")) {
@@ -62,7 +84,7 @@ public class Game {
      * Change room location to the new room if room exists.
      * @param newLocation
      */
-    public static void changeLocation(final Room newLocation)
+    public static void changeLocation(final RoomInterface newLocation)
     {
         if (newLocation != null) {
         currentLocation = newLocation;
@@ -86,7 +108,7 @@ public class Game {
      */
     public static void lookCommand()
     {
-        System.out.println("You are going ");
+        System.out.println("You are looking");
     }
 
     /**
@@ -110,6 +132,13 @@ public class Game {
         } else {
             System.out.println("There is no " + itemName + " in this room");
         }
+    }
+
+    /**
+     * Quit the game.
+     */
+    public static void quitCommand() {
+        
     }
 
     

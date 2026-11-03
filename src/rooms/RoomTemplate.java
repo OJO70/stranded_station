@@ -1,40 +1,40 @@
 package rooms;
-public class RoomTemplate extends Room implements RoomInterface {
+public class RoomTemplate implements RoomInterface {
 
     public static final String ROOM_NAME = "RoomTemplate";
 
-    protected Room north = null;
-    protected Room south = null;
-    protected Room east = null;
-    protected Room west = null;
-    protected Room up = null;
-    protected Room down = null;
+    protected RoomInterface north = null;
+    protected RoomInterface south = null;
+    protected RoomInterface east = null;
+    protected RoomInterface west = null;
+    protected RoomInterface up = null;
+    protected RoomInterface down = null;
 
     protected boolean keyPresent = false;
 
     protected String lookDescription = "you should not be seeing this, something is wrong with the room";
     
-    public Room getNorth() {
+    public RoomInterface getNorth() {
         return this.north;
     }
 
-    public Room getSouth() {
+    public RoomInterface getSouth() {
         return this.south;
     }
 
-    public Room getEast() {
+    public RoomInterface getEast() {
         return this.east;
     }
 
-    public Room getWest() {
+    public RoomInterface getWest() {
         return this.west;
     }
 
-    public Room getUp() {
+    public RoomInterface getUp() {
         return this.up;
     }
 
-    public Room getDown() {
+    public RoomInterface    getDown() {
         return this.down;
     }
 
@@ -50,8 +50,8 @@ public class RoomTemplate extends Room implements RoomInterface {
         this.keyPresent = keyPresent;
     };
 
-    public Room goDirection(final String direction) throws IllegalArgumentException {
-        Room nextRoom = null;
+    public RoomInterface goDirection(final String direction) throws IllegalArgumentException {
+        RoomInterface nextRoom = null;
         if (direction.equals("north")) {
             nextRoom = this.north;
         } else if (direction.equals("south")) {

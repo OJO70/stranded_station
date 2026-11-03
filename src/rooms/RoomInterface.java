@@ -1,15 +1,19 @@
 package rooms;
 public interface RoomInterface {
     
-    public Room getNorth();
-    public Room getSouth();
-    public Room getEast();
-    public Room getWest();
-    public Room getUp();
-    public Room getDown();
+    public RoomInterface getNorth();
+    public RoomInterface getSouth();
+    public RoomInterface getEast();
+    public RoomInterface getWest();
+    public RoomInterface getUp();
+    public RoomInterface getDown();
 
     public String getLookDescription();
 
     public boolean isKeyPresent();
     public void setKeyPresent(final boolean keyPresent);
+
+    // public void setUpRoomConnections(); <-- later
+
+    // public RoomInterface goDirection(final String direction) throws IllegalArgumentException; <- maybe later
 }
