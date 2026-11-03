@@ -1,3 +1,5 @@
+import rooms.*;
+
 public class Game {
 
     private static Room templateRoom = new RoomTemplate();
@@ -15,7 +17,12 @@ public class Game {
     /**
      * Main game loop will contain the primary loop
      * and control flow logic for the game.
-     * @return
+     * ToDo:
+     * - [ ] Implement the game while loop
+     * - [ ] Implement the game command parser
+     * - [ ] Implement the game command executor
+     *
+     * @return true if player wins, false if player loses or quits. <- there is currently no lose condition.
      */
     public static boolean gameLoop()
     {
@@ -74,7 +81,7 @@ public class Game {
     }
 
     /**
-     * 
+     * Allow a player to look around the room and get a description of the room.
      * @param direction
      */
     public static void lookCommand()
@@ -83,12 +90,12 @@ public class Game {
     }
 
     /**
-     * 
+     * Alow a player to get help with the game and the commands available.
      * @param direction
      */
     public static void helpCommand()
     {
-        System.out.println("You are going ");
+        System.out.println(Intro.Tutorial());
     }
 
     /**
@@ -99,7 +106,7 @@ public class Game {
     {
         if (currentLocation.isKeyPresent() && itemName.equals("key")) {
             hasKey = true;
-            currentLocation.keyPresent = false;
+            currentLocation.setKeyPresent(false);
         } else {
             System.out.println("There is no " + itemName + " in this room");
         }
