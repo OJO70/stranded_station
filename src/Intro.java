@@ -10,7 +10,7 @@ public class Intro {
 
     public static String Tutorial() {
         //To do:
-        String tutorial = "To play the game ";
+        String tutorial = "To play the game you have options to choose from.\n GO can be followed by by the directions:\n North, South, East, West, Down and Up.\nYou can also Take and Look at things in your environment.";
 
         return tutorial;
     }
