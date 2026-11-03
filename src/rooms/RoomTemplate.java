@@ -44,6 +44,10 @@ public class RoomTemplate extends Room implements RoomInterface {
         return this.keyPresent;
     }
 
+    public void setKeyPresent(final boolean keyPresent) {
+        this.keyPresent = keyPresent;
+    };
+
     /**    (non-Javadoc)
      * This is AI I hate it only for debuging and explenation
      * @see java.lang.Object#toString()

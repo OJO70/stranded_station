@@ -11,4 +11,5 @@ public interface RoomInterface {
     public String getLookDescription();
 
     public boolean isKeyPresent();
+    public void setKeyPresent(final boolean keyPresent);
 }

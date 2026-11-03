@@ -1,3 +1,5 @@
+package rooms;
+
 public class Room implements RoomInterface {
 
     protected Room north = null;
@@ -41,6 +43,11 @@ public class Room implements RoomInterface {
 
     public boolean isKeyPresent() {
         return this.keyPresent;
+    }
+
+    @Override
+    public void setKeyPresent(boolean keyPresent) {
+        this.keyPresent = keyPresent;
     }
     
     
