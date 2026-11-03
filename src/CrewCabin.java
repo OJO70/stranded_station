@@ -5,7 +5,7 @@ public class CrewCabin implements RoomInterface {
 
     protected RoomInterface north = null;
     protected RoomInterface south = null;
-    protected RoomInterface east = null;
+    protected RoomInterface east = Game.centeralCorridor;
     protected RoomInterface west = null;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
@@ -13,6 +13,8 @@ public class CrewCabin implements RoomInterface {
     protected boolean keyPresent = false;
 
     protected String lookDescription = "you should not be seeing this, something is wrong with the room";
+
+    String roomContent = "datapad";
     
     public RoomInterface getNorth() {
         return this.north;
