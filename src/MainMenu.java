@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class MainMenu {
+    public static final int MenuChoices=4;//Assuming there are ony 4 options to choose from? Start,help, story/background,quit.
 
     public static  Scanner stdin = new Scanner(System.in);
 
@@ -20,12 +21,33 @@ public class MainMenu {
 
 
     
-    public static int Start_Quit_Method() throws Exception {
+    public static int ReadMenuChoice() throws Exception { // looked at chris's code and you cant incorpporate this after he lists menu choices
 
-        System.out.println("Please Select 1: To start or 2: To Quit");
+        while(true){
 
-        UUtils integerInput = new UUtils();
-        return integerInput.consoleInt();
+            int choice = new UUtils().consoleInt();
+
+            if (choice>=1 && choice<=MenuChoices){ 
+
+                return choice;
+
+
+            }
+
+            System.out.println("Please select an option from the Menu");
+
+
+
+
+        }
+
+        
+
+
+
+         
+
+
 
     
 
