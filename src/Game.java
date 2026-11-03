@@ -12,13 +12,13 @@ public class Game {
     private static RoomInterface templateRoom = new RoomTemplate();
 
     /* Array to store all rooms */
-    private static RoomInterface observationDeck = null;
-    private static RoomInterface labratory = null;
-    private static RoomInterface centeralCorridor = null;
-    private static RoomInterface crewCabin = null;
-    private static RoomInterface storageRoom = null;
-    private static RoomInterface airlock = null;
-    private static RoomInterface escapePod = null;
+    public static RoomInterface observationDeck = null;
+    public static RoomInterface labratory = null;
+    public static RoomInterface centeralCorridor = null;
+    public static RoomInterface crewCabin = null;
+    public static RoomInterface storageRoom = null;
+    public static RoomInterface airlock = null;
+    public static RoomInterface escapePod = null;
 
     /* string linked to current location
      * Can be changed to a class call for more genralised code later.
