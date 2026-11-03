@@ -1,4 +1,4 @@
-public class RoomTemplate extends Room implements RoomInterface {
+public class RoomTemplate extends Room {
 
     protected Room north = null;
     protected Room south = null;

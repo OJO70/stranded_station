@@ -22,7 +22,7 @@ public class UUtils {
     }
 
     public Integer consoleInt() {
-        System.out.printf("please enter a int: ");
+        System.out.printf("please enter an int: ");
         while(stdin.hasNext()) {
             
             if (stdin.hasNextInt()) {
