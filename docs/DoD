@@ -1,1 +1,10 @@
 
+Definition of Done:
+
+- User story must fully compile and run on both the push and pull machines
+- Options must be made clear to the player at all time 
+- Players should be able to quit out to “main menu” at any time 
+- Push requests must be reviewed by at least one other dev before pull request
+- Any and all unit tests should pass before a feature can be considered “done”
+- All SPaG must be accurate 
+
