@@ -1,6 +1,8 @@
 package rooms;
 public class RoomTemplate extends Room implements RoomInterface {
 
+    public static final String ROOM_NAME = "RoomTemplate";
+
     protected Room north = null;
     protected Room south = null;
     protected Room east = null;
@@ -47,6 +49,26 @@ public class RoomTemplate extends Room implements RoomInterface {
     public void setKeyPresent(final boolean keyPresent) {
         this.keyPresent = keyPresent;
     };
+
+    public Room goDirection(final String direction) throws IllegalArgumentException {
+        Room nextRoom = null;
+        if (direction.equals("north")) {
+            nextRoom = this.north;
+        } else if (direction.equals("south")) {
+            nextRoom = this.south;
+        } else if (direction.equals("east")) {
+            nextRoom = this.east;
+        } else if (direction.equals("west")) {
+            nextRoom = this.west;
+        } else if (direction.equals("up")) {
+            nextRoom = this.up;
+        } else if (direction.equals("down")) {
+            nextRoom = this.down;
+        }else {
+            throw new IllegalArgumentException("Invalid direction: " + direction);
+        }
+        return nextRoom;
+    }
 
     /**    (non-Javadoc)
      * This is AI I hate it only for debuging and explenation
