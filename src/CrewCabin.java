@@ -1,40 +1,40 @@
-package rooms;
 
 
-public class CrewCabin extends Room {
 
-    protected Room north = null;
-    protected Room south = null;
-    protected Room east = null;
-    protected Room west = null;
-    protected Room up = null;
-    protected Room down = null;
+public class CrewCabin implements RoomInterface {
+
+    protected RoomInterface north = null;
+    protected RoomInterface south = null;
+    protected RoomInterface east = null;
+    protected RoomInterface west = null;
+    protected RoomInterface up = null;
+    protected RoomInterface down = null;
 
     protected boolean keyPresent = false;
 
     protected String lookDescription = "you should not be seeing this, something is wrong with the room";
     
-    public Room getNorth() {
+    public RoomInterface getNorth() {
         return this.north;
     }
 
-    public Room getSouth() {
+    public RoomInterface getSouth() {
         return this.south;
     }
 
-    public Room getEast() {
+    public RoomInterface getEast() {
         return this.east;
     }
 
-    public Room getWest() {
+    public RoomInterface getWest() {
         return this.west;
     }
 
-    public Room getUp() {
+    public RoomInterface getUp() {
         return this.up;
     }
 
-    public Room getDown() {
+    public RoomInterface getDown() {
         return this.down;
     }
 
@@ -55,6 +55,12 @@ public class CrewCabin extends Room {
         return "RoomTemplate [north=" + north + ", south=" + south + ", east=" + east + ", west=" + west + ", up="
                 + up + ", down=" + down + ", keyPresent=" + keyPresent + ", lookDescription=" + lookDescription
                 + "]";
+    }
+
+    @Override
+    public void setKeyPresent(boolean keyPresent) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
     }
 
     

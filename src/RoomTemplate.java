@@ -1,4 +1,4 @@
-package rooms;
+
 public class RoomTemplate implements RoomInterface {
 
     public static final String ROOM_NAME = "RoomTemplate";
