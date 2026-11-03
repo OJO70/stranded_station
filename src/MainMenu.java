@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class MainMenu {
-    public static final int MenuChoices=4;//Assuming there are ony 4 options to choose from? Start,help, story/background,quit.
+    private static final int MenuChoices=4;//Assuming there are ony 4 options to choose from? Start,help, story/background,quit.
 
     public static  Scanner stdin = new Scanner(System.in);
 
@@ -21,7 +21,7 @@ public class MainMenu {
 
 
     
-    public static int ReadMenuChoice() throws Exception { // looked at chris's code and you cant incorpporate this after he lists menu choices
+    public static int ReadMenuChoice() throws Exception { // looked at chris's code and you can incorpporate this after he lists menu choices int read_menu_number = to this method.
 
         while(true){
 
