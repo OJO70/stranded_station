@@ -1,4 +1,5 @@
-public class RoomTemplate extends Room {
+package rooms;
+public class RoomTemplate extends Room implements RoomInterface {
 
     protected Room north = null;
     protected Room south = null;

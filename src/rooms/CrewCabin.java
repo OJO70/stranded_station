@@ -1,4 +1,7 @@
-public class CrewCani extends Room {
+package rooms;
+
+
+public class CrewCabin extends Room {
 
     protected Room north = null;
     protected Room south = null;
