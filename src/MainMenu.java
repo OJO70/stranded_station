@@ -54,7 +54,7 @@ public class MainMenu {
 
         if (read_menu_number == 1)
         {
-            System.out.println("YOU WIN!!!\n");
+            Intro.Map_layout();
         }
         else if (read_menu_number == 2)
         {

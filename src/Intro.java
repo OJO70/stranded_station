@@ -14,4 +14,43 @@ public class Intro {
 
         return tutorial;
     }
+
+    public static void Map_layout()
+    {
+        System.out.println("                          |‾‾‾‾‾‾‾‾‾‾‾‾‾|");
+        System.out.println("                          | Observation |");
+        System.out.println("                          |     Deck    |");
+        System.out.println("                          |_____________|");
+        System.out.println("                                 |      ");
+        System.out.println("                                 | Up/Down");  
+        System.out.println("                                 |      ");   
+        System.out.println("                          |‾‾‾‾‾‾‾‾‾‾‾‾‾|");
+        System.out.println("                          |     The     |");
+        System.out.println("                          |  Laboratory |");
+        System.out.println("                          |_____________|");
+        System.out.println("                                 |      ");
+        System.out.println("                                 | North/South");
+        System.out.println("                                 |      ");
+        System.out.println("|‾‾‾‾‾‾‾‾‾‾‾‾‾|           |‾‾‾‾‾‾‾‾‾‾‾‾‾|           |‾‾‾‾‾‾‾‾‾‾‾‾‾| ");
+        System.out.println("|    Crew     | East/West |   Central   | East/West |   Storage   |");
+        System.out.println("|   Cabin     |  ‾‾ ‾‾ ‾‾ |  Corridor   |  ‾‾ ‾‾ ‾‾ |     Bay     |");
+        System.out.println("|_____________|           |_____________|           |_____________|");
+        System.out.println("                                 |      ");
+        System.out.println("                                 | North/South");
+        System.out.println("                                 |      ");
+        System.out.println("                          |‾‾‾‾‾‾‾‾‾‾‾‾‾|");
+        System.out.println("                          |     The     |");
+        System.out.println("                          |   Airlock   |");
+        System.out.println("                          |_____________|");
+        System.out.println("                                 |      ");
+        System.out.println("                                 | Up/Down");  
+        System.out.println("                                 |      ");   
+        System.out.println("                          |‾‾‾‾‾‾‾‾‾‾‾‾‾|");
+        System.out.println("                          |    Escape   |");
+        System.out.println("                          |     Pod     |");
+        System.out.println("                          |_____________|");
+
+
+
+    }
 }
