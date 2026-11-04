@@ -71,6 +71,16 @@ public class CentralCorridor implements RoomInterface {
     @Override
     public String getName() {
         return this.name;
+
+
     }
     
+
+
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
+    }
 }
