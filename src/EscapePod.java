@@ -9,7 +9,7 @@ public class EscapePod implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String getName = "Escape Pod";
+    protected String name = "Escape Pod";
     protected String lookDescription = "You are in the Escape Pod.";
 
     public static String[] items = { "" };
@@ -81,8 +81,7 @@ public class EscapePod implements RoomInterface {
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return this.name;
     }
 
     

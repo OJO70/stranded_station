@@ -9,7 +9,7 @@ public class Airlock implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String getName = "Airlock";
+    protected String name = "Airlock";
     protected String lookDescription = "You are in the Airlock.";
 
     @Override
@@ -69,8 +69,7 @@ public class Airlock implements RoomInterface {
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return this.name;
     }
 
     
