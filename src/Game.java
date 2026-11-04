@@ -2,6 +2,14 @@ public class Game {
      /* Does the player have the key? */
     private static boolean hasKey = false;
 
+<<<<<<< Updated upstream
+=======
+    private static boolean isPlaying = true;
+
+    private static boolean keepPlaying;
+
+    private static RoomInterface templateRoom = new RoomTemplate();
+>>>>>>> Stashed changes
 
     /* Array to store all rooms */
     public static RoomInterface observationDeck = new ObservationDeck();
@@ -47,6 +55,7 @@ public class Game {
      */
     public static boolean gameLoop()
     {
+<<<<<<< Updated upstream
         setUpGameMap();
         roomIntroduction();
         System.out.println("Welcome to the game!");
@@ -59,6 +68,19 @@ public class Game {
             }
         }
         
+=======
+        while(keepPlaying){
+        UserAction();
+        boolean reachedEscapePod = currentLocation==escapePod;
+
+        if (keepPlaying&&reachedEscapePod){
+
+            return true;
+        }
+        }
+        
+        return false; //double check this quits without winning 
+>>>>>>> Stashed changes
     }
 
     
@@ -103,6 +125,11 @@ public class Game {
 
             if (input[0].equals("h")) {
 
+                MainMenu.ShowCommands();
+                
+
+
+
             }
 
             else if (input[0].equals("go")) {
@@ -115,6 +142,13 @@ public class Game {
 
             else if (input[0].equals("look")) {
                 lookCommand();
+            }
+
+            else if (input[0].equals("q")){
+                System.out.println("Goodbye, Thank you for playing");
+                keepPlaying = false;
+
+
             }
 
             //Implement drop in future
