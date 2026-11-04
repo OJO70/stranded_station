@@ -11,7 +11,7 @@ public class CrewCabin implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String getName = "Crew Cabin";
+    protected String name = "Crew Cabin";
     protected String lookDescription = "You are in the Crew Cabin.";
 
     @Override
@@ -71,7 +71,7 @@ public class CrewCabin implements RoomInterface {
 
     @Override
     public String getName() {
-        return this.getName();
+        return this.name;
     }
 
     

@@ -65,6 +65,12 @@ public class StorageBay implements RoomInterface {
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
     }
 
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    }
+
     
     
 }

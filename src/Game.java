@@ -57,7 +57,7 @@ public class Game {
         System.out.println("Welcome to the game!");
         while (keepPlaying) {
             System.out.println("+---------------------------------------------------+");
-            System.out.print("(enter_station|command)++> ");
+            System.out.printf("(enter_station|command)[%s]++> ",currentLocation.getName());
             UserAction();
             System.out.println("+---------------------------------------------------+");
             boolean reachedEscapePod = currentLocation == escapePod;
@@ -180,7 +180,7 @@ public class Game {
     /**
      * Print the introduction for the current room.
      */
-rooms
+
     public static void roomIntroduction()
     {
         System.out.println("You are in the " + currentLocation.getName());
