@@ -180,8 +180,10 @@ public class Game {
     /**
      * Print the introduction for the current room.
      */
-    public static void roomIntroduction() {
-        System.out.println("You are in a room" + currentLocation.getLookDescription());
+rooms
+    public static void roomIntroduction()
+    {
+        System.out.println("You are in the " + currentLocation.getName());
     }
 
     /**
@@ -191,6 +193,7 @@ public class Game {
      */
     public static void lookCommand() {
         System.out.println("You are looking");
+        currentLocation.getLookDescription();
     }
 
     /**
