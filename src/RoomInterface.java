@@ -1,4 +1,4 @@
-package rooms;
+
 public interface RoomInterface {
     
     public RoomInterface getNorth();

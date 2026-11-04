@@ -4,7 +4,7 @@
 public class Laboratory implements RoomInterface {
 
     protected RoomInterface north = null;
-    protected RoomInterface south = Game.centeralCorridor;
+    protected RoomInterface south = Game.centralCorridor;
     protected RoomInterface east = null;
     protected RoomInterface west = null;
     protected RoomInterface up = Game.observationDeck;

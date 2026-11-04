@@ -1,20 +1,15 @@
-
-
-
 public class CrewCabin implements RoomInterface {
 
     protected RoomInterface north = null;
     protected RoomInterface south = null;
-    protected RoomInterface east = Game.centeralCorridor;
-    protected RoomInterface west = null;
+    protected RoomInterface east = null;
+    protected RoomInterface west = Game.centralCorridor;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
     protected boolean keyPresent = false;
 
-    protected String lookDescription = "you should not be seeing this, something is wrong with the room";
-
-    String roomContent = "datapad";
+    protected String lookDescription = "You are in the Crew Cabin.";
     
     public RoomInterface getNorth() {
         return this.north;

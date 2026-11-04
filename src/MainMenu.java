@@ -1,10 +1,44 @@
 import java.util.Scanner;
 
-
-
 public class MainMenu {
+    private static final int MenuChoices=4;//Assuming there are ony 4 options to choose from? Start,help, story/background,quit.
 
-    private static Scanner stdin = new Scanner(System.in);
+    public static  Scanner stdin = new Scanner(System.in);
+
+    public static int ReadMenuChoice() throws Exception { // looked at chris's code and you can incorpporate this after he lists menu choices int read_menu_number = to this method.
+
+        while(true){
+
+            int choice = new UUtils().consoleInt();
+
+            if (choice>=1 && choice<=MenuChoices){ 
+
+                return choice;
+
+            }
+
+            System.out.println("Please select an option from the Menu");
+
+        }
+
+        }
+    public static void ShowCommands()throws Exception{
+        
+
+
+
+
+
+    }
+
+    
+
+
+
+
+
+
+
     
     public static void MainMenu() throws Exception 
     {
@@ -15,7 +49,7 @@ public class MainMenu {
         System.out.println("[3] STORY \n");
         System.out.println("[4] EXIT PROGRAM \n");
 
-        int read_menu_number = new UUtils().consoleInt();
+        int read_menu_number = ReadMenuChoice();
 
         if (read_menu_number == 1)
         {
@@ -29,13 +63,10 @@ public class MainMenu {
         {
             System.out.println("You are an astronaut on the ISS and your station has been hit by debris. In the panic your team has left without you but there is one pod left you need to explore the station, repair the pod and escape the station.\n");
         }
-        else if (read_menu_number == 4)
+        else
         {
             return ;
         }
-        else 
-        {
-            MainMenu();
-        }
+        
     }
 }
