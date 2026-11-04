@@ -1,15 +1,16 @@
 import java.util.Scanner;
 
 public class MainMenu {
-    private static final int MenuChoices=4;//Assuming there are ony 4 options to choose from? Start,help, story/background,quit.
+    private static final int MenuChoices = 4;// Assuming there are ony 4 options to choose from? Start,help,
+                                             // story/background,quit.
 
-    public static  Scanner stdin = new Scanner(System.in);
-
+    public static Scanner stdin = new Scanner(System.in);
 
     public static String[] CommandParser() throws Exception {
 
         String input = stdin.nextLine();
-        // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
+        // Split on space. Into array. Commands must be array length 2 elements (1 or 2
+        // because of help). Return array.
         String[] splitStr = input.split(" ");
 
         if (splitStr.length >= 0 && splitStr.length <= 2) {
@@ -19,13 +20,15 @@ public class MainMenu {
 
     }
 
-    public static int ReadMenuChoice() throws Exception { // looked at chris's code and you can incorpporate this after he lists menu choices int read_menu_number = to this method.
+    public static int ReadMenuChoice() throws Exception { // looked at chris's code and you can incorpporate this after
+                                                          // he lists menu choices int read_menu_number = to this
+                                                          // method.
 
-        while(true){
+        while (true) {
 
             int choice = new UUtils().consoleInt();
 
-            if (choice>=1 && choice<=MenuChoices){ 
+            if (choice >= 1 && choice <= MenuChoices) {
 
                 return choice;
 
@@ -35,29 +38,19 @@ public class MainMenu {
 
         }
 
-        }
-        public static void ShowCommands(){
+    }
+
+    public static void ShowCommands() {
         System.out.println("Available Commands:");
-        System.out.println("⬆️ go north     go south ⬇️"); //add the other commands next release e.g take,look etc
+        System.out.println("⬆️ go north     go south ⬇️"); // add the other commands next release e.g take,look etc
         System.out.println("➡️ go east      go west ⬅️");
         System.out.println("🔼 up           down 🔽");
-        
-        System.out.println("[m] - Return to main menu");
         System.out.println("[q] - Exits the program");
-        System.out.println("[x] - For Map 🗺️ ");
-
-        
-
-
+        System.out.println("[m] - For Map 🗺️ ");
 
     }
 
-
-
-
-    
-    public static void MainMenu() throws Exception 
-    {
+    public static void MainMenu() throws Exception {
         System.out.println("Stranded Station 2026 \n");
 
         System.out.println("[1] START NEW GAME \n");
@@ -67,63 +60,45 @@ public class MainMenu {
 
         int read_menu_number = ReadMenuChoice();
 
-        if (read_menu_number == 1)
-        {
-
+        if (read_menu_number == 1) {
 
             Intro.Intro();
             Intro.Tutorial();
             Intro.Map_layout();
 
-            while(true)
-            {
+            while (true) {
                 System.out.println("Please press \"1\" to start the game or \"2\" to return to main menu");
-
 
                 int start_game = new UUtils().consoleInt();
 
-                if (start_game==1)
-                { 
+                if (start_game == 1) {
 
                     boolean exitCondition = Game.gameLoop();
                     if (exitCondition) {
-                      System.out.println("Congratulations YOU WON !!!!!!!!🎉🥳");
-                    }else {
-                      System.out.println("You have quit the game");
+                        System.out.println("Congratulations YOU WON !!!!!!!!🎉🥳");
+                    } else {
+                        MainMenu();
                     }
                     return;
 
                 }
-                if (start_game ==2)
-                {
+                if (start_game == 2) {
                     MainMenu();
+
                 }
-
-
-                
 
             }
 
-
-        }
-        else if (read_menu_number == 2)
-        {
+        } else if (read_menu_number == 2) {
             ShowCommands();
+        } else if (read_menu_number == 3) {
+            System.out.println(
+                    "You are an astronaut on the ISS and your station has been hit by debris. In the panic your team has left without you but there is one pod left you need to explore the station, repair the pod and escape the station.\n");
+        } else {
+
+            return;
         }
-        else if (read_menu_number == 3)
-        {
-            System.out.println("You are an astronaut on the ISS and your station has been hit by debris. In the panic your team has left without you but there is one pod left you need to explore the station, repair the pod and escape the station.\n");
-        }
-        else
-        {
-            return ;
-        }
-        
+
     }
-
-
-
-
-
 
 }
