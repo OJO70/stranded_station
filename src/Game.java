@@ -119,7 +119,7 @@ public class Game {
 
 
             else if (input[0].equals("take")) {
-                takeCommand(input[1]);
+                takecommand(input[1]);
             }
 
             else if (input[0].equals("look")) {
