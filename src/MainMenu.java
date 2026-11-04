@@ -54,6 +54,7 @@ public class MainMenu {
 
         if (read_menu_number == 1)
         {
+            Intro.Map_layout();
             boolean exitCondition = Game.gameLoop();
             if (exitCondition) {
                 System.out.println("WON");
@@ -61,6 +62,9 @@ public class MainMenu {
                 System.out.println("You have quit the game");
             }
             return;
+
+
+            
 
         }
         else if (read_menu_number == 2)
