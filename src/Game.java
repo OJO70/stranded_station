@@ -148,6 +148,10 @@ public class Game {
 
             }
 
+            else if (input[0].equals("drop")) {
+                //dropCommand();
+            }
+
             // Implement drop in future
 
             else {
