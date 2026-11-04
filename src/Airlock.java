@@ -12,6 +12,8 @@ public class Airlock implements RoomInterface {
     protected String name = "Airlock";
     protected String lookDescription = "You are in the Airlock.";
 
+    public static String[] items = {""};
+
     @Override
     public void setUpRoomConnections() {
         this.north = Game.centralCorridor;
@@ -70,6 +72,12 @@ public class Airlock implements RoomInterface {
     @Override
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
     }
 
     

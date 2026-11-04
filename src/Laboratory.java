@@ -86,6 +86,12 @@ public class Laboratory implements RoomInterface {
         return this.name;
     }
 
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
+    }
+
     
     
 }

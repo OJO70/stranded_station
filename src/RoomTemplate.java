@@ -87,6 +87,18 @@ public class RoomTemplate implements RoomInterface {
         throw new UnsupportedOperationException("Unimplemented method 'setUpRoomConnections'");
     }
 
+    @Override
+    public String[] getItems() {
+        
+        return new String[1];
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    }
+
     
     
 }

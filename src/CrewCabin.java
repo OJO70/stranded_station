@@ -76,6 +76,20 @@ public class CrewCabin implements RoomInterface {
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
     }
 
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    }
+
+
+
     
     
 }

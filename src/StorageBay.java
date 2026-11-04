@@ -81,6 +81,11 @@ public class StorageBay implements RoomInterface {
 
     }
 
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
+    }
     
     
 }
