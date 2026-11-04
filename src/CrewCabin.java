@@ -2,17 +2,16 @@ public class CrewCabin implements RoomInterface {
 
     protected RoomInterface north = null;
     protected RoomInterface south = null;
-
-    protected RoomInterface east = Game.centralCorridor;
-
+    protected RoomInterface east = Game.centralCorridor;;
     protected RoomInterface west = null;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
     protected boolean keyPresent = false;
 
-    protected String name = "Crew Cabin";
     protected String lookDescription = "You are in the Crew Cabin.";
+
+    public static String[] items = {"Torch"};
 
     @Override
     public void setUpRoomConnections() {
@@ -44,8 +43,15 @@ public class CrewCabin implements RoomInterface {
         return this.down;
     }
 
-    public String getLookDescription() {
-        return this.lookDescription;
+    public String getLookDescription() 
+    {
+        String items = "";
+        for (String item : this.items) 
+        {
+            items += "You see a " + item + " in the Escape Pod.\n";
+        }
+        String output = this.lookDescription + "\n you see" + items + " Around the room";
+        return output;
     }
 
     public boolean isKeyPresent() {
@@ -67,11 +73,6 @@ public class CrewCabin implements RoomInterface {
     public void setKeyPresent(boolean keyPresent) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
-    }
-
-    @Override
-    public String getName() {
-        return this.name;
     }
 
     
