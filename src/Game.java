@@ -1,6 +1,13 @@
 public class Game {
-     /* Does the player have the key? */
+    /* Does the player have the key? */
     private static boolean hasKey = false;
+
+
+    private static boolean isPlaying = true;
+
+    private static boolean keepPlaying;
+
+    private static RoomInterface templateRoom = new RoomTemplate();
 
 
     /* Array to store all rooms */
@@ -12,7 +19,8 @@ public class Game {
     public static RoomInterface airlock = new Airlock();
     public static RoomInterface escapePod = new EscapePod();
 
-    /* string linked to current location
+    /*
+     * string linked to current location
      * Can be changed to a class call for more genralised code later.
      */
     private static RoomInterface currentLocation = crewCabin;
@@ -23,8 +31,8 @@ public class Game {
      * - [ ] Implement the game map initialisation logic
      * - [ ] Implement the game map room connections
      */
-    public static void setUpGameMap(){
-        
+    public static void setUpGameMap() {
+
         observationDeck.setUpRoomConnections();
         laboratory.setUpRoomConnections();
         centralCorridor.setUpRoomConnections();
@@ -34,7 +42,6 @@ public class Game {
         escapePod.setUpRoomConnections();
     }
 
-
     /**
      * Main game loop will contain the primary loop
      * and control flow logic for the game.
@@ -43,32 +50,45 @@ public class Game {
      * - [ ] Implement the game command parser
      * - [ ] Implement the game command executor
      *
-     * @return true if player wins, false if player loses or quits. <- there is currently no lose condition.
+     * @return true if player wins, false if player loses or quits. <- there is
+     *         currently no lose condition.
      */
-    public static boolean gameLoop()
-    {
+    public static boolean gameLoop() {
+
         setUpGameMap();
         roomIntroduction();
         System.out.println("Welcome to the game!");
-        while (true) {
-            
-        UserAction();
-            if (currentLocation == Game.escapePod) {
-                System.out.println("You have reached the escape pod and won the game!");
+        while (keepPlaying) {
+            UserAction();
+            boolean reachedEscapePod = currentLocation == escapePod;
+
+            if (keepPlaying && reachedEscapePod) {
+
                 return true;
             }
         }
         
-    }
 
-    
+        while(keepPlaying){
+        UserAction();
+        boolean reachedEscapePod = currentLocation==escapePod;
+
+        if (keepPlaying&&reachedEscapePod){
+
+            return true;
+        }
+        }
+        
+        return false; //double check this quits without winning 
+
+    }
 
     /**
      * Game direction logic may be able to simplify.
+     * 
      * @param direction
      */
-    public static void goCommand(final String direction)
-    {
+    public static void goCommand(final String direction) {
 
         RoomInterface nextRoom = null;
         if (direction.equals("north")) {
@@ -89,19 +109,22 @@ public class Game {
         changeLocation(nextRoom);
     }
 
-    //Get user input command. Call the parser from utils, with the try and execption. Include while loop. In else if not valid, set string to null; which would do the do while loop again.
-    public static void UserAction () {
+    // Get user input command. Call the parser from utils, with the try and
+    // execption. Include while loop. In else if not valid, set string to null;
+    // which would do the do while loop again.
+    public static void UserAction() {
         String[] input = null;
 
         do {
             try {
                 input = UUtils.CommandParser();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
 
             if (input[0].equals("h")) {
+
+                MainMenu.ShowCommands();
 
             }
 
@@ -110,39 +133,44 @@ public class Game {
             }
 
             else if (input[0].equals("take")) {
-                
+
             }
 
             else if (input[0].equals("look")) {
                 lookCommand();
             }
 
-            //Implement drop in future
+            else if (input[0].equals("q")) {
+                System.out.println("Goodbye, Thank you for playing");
+                keepPlaying = false;
+
+            }
+
+            // Implement drop in future
 
             else {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
-        }
-        while (input == null);
+        } while (input == null);
     }
 
     /**
      * Change room location to the new room if room exists.
+     * 
      * @param newLocation
      */
-    public static void changeLocation(final RoomInterface newLocation)
-    {
+    public static void changeLocation(final RoomInterface newLocation) {
         if (newLocation != null) {
             // if (newLocation == Game.airlock && !hasKey) {
-            //     System.out.println("Acess denied. You need a key to enter the airlock.");
+            // System.out.println("Acess denied. You need a key to enter the airlock.");
 
             // }else {
-            //     currentLocation = newLocation;
-            //     roomIntroduction();
+            // currentLocation = newLocation;
+            // roomIntroduction();
             // }
             currentLocation = newLocation;
             roomIntroduction();
-            
+
         } else {
             System.out.println("You cannot go that way");
         }
@@ -151,26 +179,25 @@ public class Game {
     /**
      * Print the introduction for the current room.
      */
-    public static void roomIntroduction()
-    {
+    public static void roomIntroduction() {
         System.out.println("You are in a room" + currentLocation.getLookDescription());
     }
 
     /**
      * Allow a player to look around the room and get a description of the room.
+     * 
      * @param direction
      */
-    public static void lookCommand()
-    {
+    public static void lookCommand() {
         System.out.println("You are looking");
     }
 
     /**
      * Alow a player to get help with the game and the commands available.
+     * 
      * @param direction
      */
-    public static void helpCommand()
-    {
+    public static void helpCommand() {
         System.out.println(Intro.Tutorial());
     }
 
@@ -178,8 +205,7 @@ public class Game {
      * 
      * @param direction
      */
-    public static void takeCommand(final String itemName)
-    {
+    public static void takeCommand(final String itemName) {
         if (currentLocation.isKeyPresent() && itemName.equals("key")) {
             hasKey = true;
             currentLocation.setKeyPresent(false);
@@ -188,16 +214,13 @@ public class Game {
         }
     }
 
-
-    //User iunput/command. if statemen to call relevent method from parser.
+    // User iunput/command. if statemen to call relevent method from parser.
 
     /**
      * Quit the game.
      */
     public static void quitCommand() {
-        
+
     }
 
-
-    
 }

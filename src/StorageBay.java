@@ -2,8 +2,8 @@ public class StorageBay implements RoomInterface {
 
     protected RoomInterface north = null;
     protected RoomInterface south = null;
-    protected RoomInterface east = Game.centralCorridor;
-    protected RoomInterface west = null;
+    protected RoomInterface east = null;
+    protected RoomInterface west = Game.centralCorridor;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
