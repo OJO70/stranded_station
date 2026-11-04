@@ -106,11 +106,8 @@ public class Game {
         do {
             try {
                 input = UUtils.CommandParser();
-            } catch (Exception e) {
-                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
-            }
 
-            if (input[0].equals("h")) {
+                if (input[0].equals("h")) {
 
                 MainMenu.ShowCommands();
 
@@ -121,7 +118,7 @@ public class Game {
             }
 
             else if (input[0].equals("take")) {
-
+                takeCommand(input[1]);
             }
 
             else if (input[0].equals("look")) {
@@ -131,7 +128,6 @@ public class Game {
                 Intro.Map_layout();
                 
             }
-
             
             else if (input[0].equals("help")) {
                 helpCommand();
@@ -148,11 +144,21 @@ public class Game {
 
             }
 
+            else if (input[0].equals("drop")) {
+                //dropCommand();
+            }
+
             // Implement drop in future
 
             else {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
+                
+            } catch (Exception e) {
+                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
+            }
+
+            
         } while (input == null);
     }
 
@@ -163,15 +169,15 @@ public class Game {
      */
     public static void changeLocation(final RoomInterface newLocation) {
         if (newLocation != null) {
-            // if (newLocation == Game.airlock && !hasKey) {
-            // System.out.println("Acess denied. You need a key to enter the airlock.");
+            if (newLocation == Game.airlock && !hasKey) {
+            System.out.println("Acess denied. You need a key to enter the airlock.");
 
-            // }else {
-            // currentLocation = newLocation;
-            // roomIntroduction();
-            // }
+            }else {
             currentLocation = newLocation;
             roomIntroduction();
+            }
+            // currentLocation = newLocation;
+            // roomIntroduction();
 
         } else {
             System.out.println("You cannot go that way");
@@ -181,7 +187,7 @@ public class Game {
     /**
      * Print the introduction for the current room.
      */
-rooms
+
     public static void roomIntroduction()
     {
         System.out.println("You are in the " + currentLocation.getName());
@@ -220,6 +226,9 @@ rooms
     }
 
     // User iunput/command. if statemen to call relevent method from parser.
+    public static void dropCommand(String itemName) {
+
+    }
 
 
 }
