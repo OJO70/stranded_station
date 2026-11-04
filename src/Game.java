@@ -4,15 +4,6 @@ public class Game {
 
 
     /* Array to store all rooms */
-<<<<<<< HEAD
-    public static RoomInterface centeralCorridor = null;
-    public static RoomInterface observationDeck = null;
-    public static RoomInterface labratory = null;
-    public static RoomInterface crewCabin = null;
-    public static RoomInterface storageRoom = null;
-    public static RoomInterface airlock = null;
-    public static RoomInterface escapePod = null;
-=======
     public static RoomInterface observationDeck = new ObservationDeck();
     public static RoomInterface laboratory = new Laboratory();
     public static RoomInterface centralCorridor = new CentralCorridor();
@@ -20,7 +11,6 @@ public class Game {
     public static RoomInterface storageBay = new StorageBay();
     public static RoomInterface airlock = new Airlock();
     public static RoomInterface escapePod = new EscapePod();
->>>>>>> main
 
     /* string linked to current location
      * Can be changed to a class call for more genralised code later.
@@ -163,7 +153,7 @@ public class Game {
      */
     public static void roomIntroduction()
     {
-        System.out.println("You are in a room" + currentLocation.getLookDescription());
+        System.out.println("You are in the " + currentLocation.getName());
     }
 
     /**
@@ -173,6 +163,7 @@ public class Game {
     public static void lookCommand()
     {
         System.out.println("You are looking");
+        currentLocation.getLookDescription();
     }
 
     /**

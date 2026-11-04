@@ -9,6 +9,7 @@ public class EscapePod implements RoomInterface {
 
     protected boolean keyPresent = false;
 
+    protected String getName = "Escape Pod";
     protected String lookDescription = "You are in the Escape Pod.";
 
     @Override
@@ -64,6 +65,12 @@ public class EscapePod implements RoomInterface {
     public void setKeyPresent(boolean keyPresent) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
     }
 
     

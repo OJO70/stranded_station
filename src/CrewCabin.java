@@ -9,6 +9,7 @@ public class CrewCabin implements RoomInterface {
 
     protected boolean keyPresent = false;
 
+    protected String getName = "Crew Cabin";
     protected String lookDescription = "You are in the Crew Cabin.";
 
     @Override
@@ -64,6 +65,11 @@ public class CrewCabin implements RoomInterface {
     public void setKeyPresent(boolean keyPresent) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+    }
+
+    @Override
+    public String getName() {
+        return this.getName();
     }
 
     

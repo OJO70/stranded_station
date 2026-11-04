@@ -12,6 +12,7 @@ public class Laboratory implements RoomInterface {
 
     protected boolean keyPresent = false;
 
+    protected String getName = "Labroratory";
     protected String lookDescription = "You are now in the Labroratory.";
 
     @Override
@@ -68,6 +69,12 @@ public class Laboratory implements RoomInterface {
     public void setKeyPresent(boolean keyPresent) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
     }
 
     
