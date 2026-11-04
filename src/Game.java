@@ -121,7 +121,7 @@ public class Game {
             }
 
             else if (input[0].equals("take")) {
-
+                takeCommand(input[1]);
             }
 
             else if (input[0].equals("look")) {
@@ -163,15 +163,15 @@ public class Game {
      */
     public static void changeLocation(final RoomInterface newLocation) {
         if (newLocation != null) {
-            // if (newLocation == Game.airlock && !hasKey) {
-            // System.out.println("Acess denied. You need a key to enter the airlock.");
+            if (newLocation == Game.airlock && !hasKey) {
+            System.out.println("Acess denied. You need a key to enter the airlock.");
 
-            // }else {
-            // currentLocation = newLocation;
-            // roomIntroduction();
-            // }
+            }else {
             currentLocation = newLocation;
             roomIntroduction();
+            }
+            // currentLocation = newLocation;
+            // roomIntroduction();
 
         } else {
             System.out.println("You cannot go that way");
@@ -181,7 +181,7 @@ public class Game {
     /**
      * Print the introduction for the current room.
      */
-rooms
+
     public static void roomIntroduction()
     {
         System.out.println("You are in the " + currentLocation.getName());
