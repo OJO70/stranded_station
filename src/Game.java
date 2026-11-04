@@ -2,10 +2,20 @@ public class Game {
      /* Does the player have the key? */
     private static boolean hasKey = false;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/main-menu
     private static boolean isPlaying = true;
 
     private static boolean keepPlaying;
 
+<<<<<<< HEAD
+=======
+    private static RoomInterface templateRoom = new RoomTemplate();
+
+
+>>>>>>> refs/remotes/origin/main-menu
     /* Array to store all rooms */
     public static RoomInterface observationDeck = new ObservationDeck();
     public static RoomInterface laboratory = new Laboratory();
@@ -51,9 +61,12 @@ public class Game {
     public static boolean gameLoop()
     {
 
+<<<<<<< HEAD
         setUpGameMap();
         roomIntroduction();
         System.out.println("Welcome to the game!");
+=======
+>>>>>>> refs/remotes/origin/main-menu
         while(keepPlaying){
         UserAction();
         boolean reachedEscapePod = currentLocation==escapePod;
@@ -64,8 +77,12 @@ public class Game {
         }
         }
         
+<<<<<<< HEAD
         return false; //double check this quits without winning 
 
+=======
+        return false;
+>>>>>>> refs/remotes/origin/main-menu
     }
 
     

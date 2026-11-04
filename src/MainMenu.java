@@ -24,9 +24,9 @@ public class MainMenu {
         while(true){
 
             int choice = new UUtils().consoleInt();
-             // consume the newline character after reading the integer
+
             if (choice>=1 && choice<=MenuChoices){ 
-                
+
                 return choice;
 
             }
@@ -77,11 +77,14 @@ public class MainMenu {
 
             while(true)
             {
-                System.out.println("Please select an option from the Menu");
+                System.out.println("Please press \"1\" to start the game or \"2\" to return to main menu");
+
+
                 int start_game = new UUtils().consoleInt();
 
                 if (start_game==1)
                 { 
+
                     boolean exitCondition = Game.gameLoop();
                     if (exitCondition) {
                       System.out.println("Congratulations YOU WON !!!!!!!!🎉🥳");
@@ -91,25 +94,21 @@ public class MainMenu {
                     return;
 
                 }
+                if (start_game ==2)
+                {
+                    MainMenu();
+                }
+
 
                 
 
             }
 
-            
-
-
 
         }
         else if (read_menu_number == 2)
         {
-            System.out.println("This is a texted base adventure game you will be required to type in commands your character will perform such as:\n");
-            System.out.println("⬆️ go north     go south ⬇️\n"); //add the other commands next release e.g take,look etc
-            System.out.println("➡️ go east      go west ⬅️\n");
-            System.out.println("🔼 up           down 🔽\n ");
-        
-            System.out.println("menu - Return to main menu\n");
-            System.out.println("quit - Exits the program\n ");
+            ShowCommands();
         }
         else if (read_menu_number == 3)
         {
