@@ -12,7 +12,9 @@ public class EscapePod implements RoomInterface {
     protected String name = "Escape Pod";
     protected String lookDescription = "You are in the Escape Pod.";
 
-    public static String[] items = { "" };
+
+    public static String[] items = {""};
+
 
     @Override
     public void setUpRoomConnections() {
@@ -83,14 +85,11 @@ public class EscapePod implements RoomInterface {
         return this.name;
     }
 
-
-
     @Override
     public String[] getItems() {
         
         return this.items;
     }
-
     
     
 }

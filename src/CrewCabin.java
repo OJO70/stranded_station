@@ -7,6 +7,8 @@ public class CrewCabin implements RoomInterface {
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
+    protected String name = "Crew Cabin";
+
     protected boolean keyPresent = false;
 
 
