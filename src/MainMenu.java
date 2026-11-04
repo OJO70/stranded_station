@@ -24,9 +24,9 @@ public class MainMenu {
         while(true){
 
             int choice = new UUtils().consoleInt();
-             // consume the newline character after reading the integer
+
             if (choice>=1 && choice<=MenuChoices){ 
-                
+
                 return choice;
 
             }
@@ -36,14 +36,15 @@ public class MainMenu {
         }
 
         }
-        public static void ShowCommands()throws Exception{
+        public static void ShowCommands(){
         System.out.println("Available Commands:");
         System.out.println("⬆️ go north     go south ⬇️"); //add the other commands next release e.g take,look etc
         System.out.println("➡️ go east      go west ⬅️");
         System.out.println("🔼 up           down 🔽");
         
-        System.out.println("menu - Return to main menu");
-        System.out.println("quit - Exits the program");
+        System.out.println("[m] - Return to main menu");
+        System.out.println("[q] - Exits the program");
+        System.out.println("[x] - For Map 🗺️ ");
 
         
 
@@ -69,44 +70,45 @@ public class MainMenu {
         if (read_menu_number == 1)
         {
 
+
             Intro.Intro();
             Intro.Tutorial();
             Intro.Map_layout();
 
             while(true)
             {
-                System.out.println("Please select an option from the Menu");
+                System.out.println("Please press \"1\" to start the game or \"2\" to return to main menu");
+
+
                 int start_game = new UUtils().consoleInt();
 
                 if (start_game==1)
                 { 
+
                     boolean exitCondition = Game.gameLoop();
                     if (exitCondition) {
-                      System.out.println("WON");
+                      System.out.println("Congratulations YOU WON !!!!!!!!🎉🥳");
                     }else {
                       System.out.println("You have quit the game");
                     }
                     return;
 
                 }
+                if (start_game ==2)
+                {
+                    MainMenu();
+                }
+
 
                 
 
             }
 
-            
-
 
         }
         else if (read_menu_number == 2)
         {
-            System.out.println("This is a texted base adventure game you will be required to type in commands your character will perform such as:\n");
-            System.out.println("⬆️ go north     go south ⬇️\n"); //add the other commands next release e.g take,look etc
-            System.out.println("➡️ go east      go west ⬅️\n");
-            System.out.println("🔼 up           down 🔽\n ");
-        
-            System.out.println("menu - Return to main menu\n");
-            System.out.println("quit - Exits the program\n ");
+            ShowCommands();
         }
         else if (read_menu_number == 3)
         {

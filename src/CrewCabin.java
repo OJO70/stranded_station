@@ -2,7 +2,9 @@ public class CrewCabin implements RoomInterface {
 
     protected RoomInterface north = null;
     protected RoomInterface south = null;
-    protected RoomInterface east = Game.centralCorridor;;
+
+    protected RoomInterface east = Game.centralCorridor;
+
     protected RoomInterface west = null;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
