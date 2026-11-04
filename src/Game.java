@@ -106,11 +106,8 @@ public class Game {
         do {
             try {
                 input = UUtils.CommandParser();
-            } catch (Exception e) {
-                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
-            }
 
-            if (input[0].equals("h")) {
+                if (input[0].equals("h")) {
 
                 MainMenu.ShowCommands();
 
@@ -131,7 +128,6 @@ public class Game {
                 Intro.Map_layout();
                 
             }
-
             
             else if (input[0].equals("help")) {
                 helpCommand();
@@ -157,6 +153,12 @@ public class Game {
             else {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
+                
+            } catch (Exception e) {
+                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
+            }
+
+            
         } while (input == null);
     }
 
@@ -224,6 +226,9 @@ public class Game {
     }
 
     // User iunput/command. if statemen to call relevent method from parser.
+    public static void dropCommand(String itemName) {
+
+    }
 
 
 }
