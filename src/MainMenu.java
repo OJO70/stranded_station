@@ -10,9 +10,9 @@ public class MainMenu {
         while(true){
 
             int choice = new UUtils().consoleInt();
-
+             // consume the newline character after reading the integer
             if (choice>=1 && choice<=MenuChoices){ 
-
+                
                 return choice;
 
             }
@@ -54,7 +54,14 @@ public class MainMenu {
 
         if (read_menu_number == 1)
         {
-            System.out.println("YOU WIN!!!\n");
+            boolean exitCondition = Game.gameLoop();
+            if (exitCondition) {
+                System.out.println("WON");
+            }else {
+                System.out.println("You have quit the game");
+            }
+            return;
+
         }
         else if (read_menu_number == 2)
         {
