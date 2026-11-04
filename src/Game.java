@@ -117,6 +117,7 @@ public class Game {
                 goCommand(input[1]);
             }
 
+
             else if (input[0].equals("take")) {
                 takeCommand(input[1]);
             }
@@ -216,19 +217,73 @@ public class Game {
      * 
      * @param direction
      */
-    public static void takeCommand(final String itemName) {
-        if (currentLocation.isKeyPresent() && itemName.equals("key")) {
-            hasKey = true;
-            currentLocation.setKeyPresent(false);
-        } else {
-            System.out.println("There is no " + itemName + " in this room");
+
+
+     public static int Find_index_of_item_from_room(String[] items , String itemName ) 
+    {
+        for (int i = 0; i < items.length; i++) 
+            {
+                if (itemName.equals(items[i])) 
+                {
+                    return i;
+                }
+            
+        }
+        return -1;
+    }
+
+    public static int FindLastEmptySpaceInInventory (String[] inventory) 
+    {
+
+        for(int i = inventory.length -1 ; i >= 0 ; i -- )
+            if (inventory[i] == "") 
+            {
+            return i;
+            }
+        
+        return -1;
+    }
+
+    public static void MoveItemFromSourceToDestination(int source, int dest) throws Exception 
+    {
+
+
+        if (source == -1) 
+        {
+            throw new Exception("Item is not in room");
+        }
+
+        if (dest == -1) 
+        {
+            throw new Exception("Inventory is full");
+        }
+
+        Inventory.inventory[dest] = currentLocation.getItems()[source];
+
+        currentLocation.getItems()[source] = "";
+    }
+
+
+
+        public static void takecommand(final String itemName) throws Exception
+        {
+
+        
+            MoveItemFromSourceToDestination(Find_index_of_item_from_room(currentLocation.getItems(), itemName), FindLastEmptySpaceInInventory(Inventory.inventory));
+
+            if (currentLocation.isKeyPresent() && itemName.equals("key")) {
+                hasKey = true;
+                currentLocation.setKeyPresent(false);
+            } 
+            else 
+            {
+                System.out.println("There is no " + itemName + " in this room");
+            }
+        }
+
+            public static void quitCommand() {
+
         }
     }
 
-    // User iunput/command. if statemen to call relevent method from parser.
-    public static void dropCommand(String itemName) {
 
-    }
-
-
-}
