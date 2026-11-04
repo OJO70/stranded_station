@@ -81,6 +81,12 @@ public class RoomTemplate implements RoomInterface {
                 + "]";
     }
 
+    @Override
+    public void setUpRoomConnections() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setUpRoomConnections'");
+    }
+
     
     
 }
