@@ -3,11 +3,8 @@ public class Game {
     private static boolean hasKey = false;
 
 
-    private static boolean isPlaying = true;
+    private static boolean keepPlaying = true;
 
-    private static boolean keepPlaying;
-
-    private static RoomInterface templateRoom = new RoomTemplate();
 
 
     /* Array to store all rooms */
@@ -59,7 +56,10 @@ public class Game {
         roomIntroduction();
         System.out.println("Welcome to the game!");
         while (keepPlaying) {
+            System.out.println("+---------------------------------------------------+");
+            System.out.print("(enter_station|command)++> ");
             UserAction();
+            System.out.println("+---------------------------------------------------+");
             boolean reachedEscapePod = currentLocation == escapePod;
 
             if (keepPlaying && reachedEscapePod) {
@@ -67,19 +67,7 @@ public class Game {
                 return true;
             }
         }
-        
-
-        while(keepPlaying){
-        UserAction();
-        boolean reachedEscapePod = currentLocation==escapePod;
-
-        if (keepPlaying&&reachedEscapePod){
-
-            return true;
-        }
-        }
-        
-        return false; //double check this quits without winning 
+        return false;
 
     }
 
@@ -118,11 +106,8 @@ public class Game {
         do {
             try {
                 input = UUtils.CommandParser();
-            } catch (Exception e) {
-                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
-            }
 
-            if (input[0].equals("h")) {
+                if (input[0].equals("h")) {
 
                 MainMenu.ShowCommands();
 
@@ -132,14 +117,26 @@ public class Game {
                 goCommand(input[1]);
             }
 
-            else if (input[0].equals("take")) 
-                
-            {
 
+            else if (input[0].equals("take")) {
+                takeCommand(input[1]);
             }
 
             else if (input[0].equals("look")) {
                 lookCommand();
+            }
+            else if (input[0].equals("m")) {
+                Intro.Map_layout();
+                
+            }
+            
+            else if (input[0].equals("help")) {
+                helpCommand();
+            }
+
+            else if (input[0].equals("q")) {
+                System.out.println("Goodbye, Thank you for playing");
+                keepPlaying = false;
             }
 
             else if (input[0].equals("q")) {
@@ -148,11 +145,21 @@ public class Game {
 
             }
 
+            else if (input[0].equals("drop")) {
+                //dropCommand();
+            }
+
             // Implement drop in future
 
             else {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
+                
+            } catch (Exception e) {
+                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
+            }
+
+            
         } while (input == null);
     }
 
@@ -163,15 +170,15 @@ public class Game {
      */
     public static void changeLocation(final RoomInterface newLocation) {
         if (newLocation != null) {
-            // if (newLocation == Game.airlock && !hasKey) {
-            // System.out.println("Acess denied. You need a key to enter the airlock.");
+            if (newLocation == Game.airlock && !hasKey) {
+            System.out.println("Acess denied. You need a key to enter the airlock.");
 
-            // }else {
-            // currentLocation = newLocation;
-            // roomIntroduction();
-            // }
+            }else {
             currentLocation = newLocation;
             roomIntroduction();
+            }
+            // currentLocation = newLocation;
+            // roomIntroduction();
 
         } else {
             System.out.println("You cannot go that way");
@@ -278,12 +285,5 @@ public class Game {
 
         }
     }
-
-    // User iunput/command. if statemen to call relevent method from parser.
-
-    /**
-     * Quit the game.
-     */
-
 
 
