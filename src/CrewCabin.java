@@ -7,6 +7,8 @@ public class CrewCabin implements RoomInterface {
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
+    protected String name = "Crew Cabin";
+
     protected boolean keyPresent = false;
 
     protected String lookDescription = "You are in the Crew Cabin.";
@@ -84,8 +86,7 @@ public class CrewCabin implements RoomInterface {
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return this.name;
     }
 
 

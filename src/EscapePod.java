@@ -12,6 +12,8 @@ public class EscapePod implements RoomInterface {
     protected String name = "Escape Pod";
     protected String lookDescription = "You are in the Escape Pod.";
 
+    public static String[] items = {""};
+
     @Override
     public void setUpRoomConnections() {
         this.up = Game.airlock;
@@ -70,6 +72,12 @@ public class EscapePod implements RoomInterface {
     @Override
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
     }
 
     
