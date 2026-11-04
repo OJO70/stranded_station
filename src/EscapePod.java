@@ -11,7 +11,7 @@ public class EscapePod implements RoomInterface {
 
     protected String lookDescription = "You are in the Escape Pod.";
 
-    public static String[] items = { "tablet" };
+    public static String[] items = { "" };
 
     @Override
     public void setUpRoomConnections() {
@@ -45,10 +45,15 @@ public class EscapePod implements RoomInterface {
 
     public String getLookDescription() {
         String items = "";
-        for (String item : this.items) {
-            items += "You see a " + item + " in the Escape Pod.\n";
+        String output = this.lookDescription;
+        if (items.length() > 0) {
+                for (String item : this.items) {
+                items += "You see a " + item + " in the Escape Pod.\n";
+            }
+            output += "\n you see" + items + " Around the room";
         }
-        String output = this.lookDescription + "\n you see" + items + " Around the room";
+        
+        
         return output;
     }
 
