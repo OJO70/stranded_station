@@ -9,7 +9,7 @@ public class CentralCorridor implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String getName = "Central Corridor";
+    protected String name = "Central Corridor";
     protected String lookDescription = "You are in the Central Corridor.";
 
     @Override
@@ -71,7 +71,7 @@ public class CentralCorridor implements RoomInterface {
 
     @Override
     public String getName() {
-        return this.getName();
+        return this.name;
     }
     
 }

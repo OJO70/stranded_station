@@ -12,7 +12,7 @@ public class ObservationDeck implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String getName = "Observation Deck";
+    protected String name = "Observation Deck";
     protected String lookDescription = "As you look around the observation deck it is deathly quiet...\n";
 
     // Empty room for now.
@@ -75,8 +75,7 @@ public class ObservationDeck implements RoomInterface {
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return this.name;
     }
 
     

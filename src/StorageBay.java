@@ -9,6 +9,7 @@ public class StorageBay implements RoomInterface {
 
     protected boolean keyPresent = false;
 
+    protected String name = "Storage Bay";
     protected String lookDescription = "You are in the Storage Bay.";
 
     @Override
@@ -63,6 +64,11 @@ public class StorageBay implements RoomInterface {
     public void setKeyPresent(boolean keyPresent) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     
