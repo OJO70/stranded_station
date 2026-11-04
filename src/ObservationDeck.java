@@ -1,6 +1,7 @@
 
 
 
+
 public class ObservationDeck implements RoomInterface {
 
     protected RoomInterface north = null;

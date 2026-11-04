@@ -31,6 +31,7 @@ public class CrewCabin implements RoomInterface {
         return this.east;
     }
 
+    
     public RoomInterface getWest() {
         return this.west;
     }
