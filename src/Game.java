@@ -129,9 +129,10 @@ public class Game {
             }
             else if (input[0].equals("m")) {
                 Intro.Map_layout();
+                
             }
 
-
+            
             else if (input[0].equals("help")) {
                 helpCommand();
             }
