@@ -88,6 +88,14 @@ public class ObservationDeck implements RoomInterface {
         return this.name;
     }
 
+
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
+    }
+
     
     
 }
