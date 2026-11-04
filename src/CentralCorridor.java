@@ -9,7 +9,7 @@ public class CentralCorridor implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String getName = "Central Corridor";
+    protected String name = "Central Corridor";
     protected String lookDescription = "You are in the Central Corridor.";
 
     @Override
@@ -65,13 +65,12 @@ public class CentralCorridor implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+        this.keyPresent = false;
     }
 
     @Override
     public String getName() {
-        return this.getName();
+        return this.name;
     }
     
 }
