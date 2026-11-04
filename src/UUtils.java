@@ -1,9 +1,10 @@
 
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class UUtils {
 
-    private Scanner stdin = new Scanner(System.in);
+    private static Scanner stdin = new Scanner(System.in);
 
     
 
@@ -35,10 +36,17 @@ public class UUtils {
         return null;
     }
 
-    
 
-    private void clearInputStream() {
-        stdin.nextLine();
+    private static String[] CommandParser() throws Exception {
+        String input = stdin.nextLine();
+        // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
+        String[] splitStr = input.split(" ");
+
+        if (splitStr.length >= 0 && splitStr.length <= 2) {
+            return splitStr;
+        }
+        throw new Exception();
+
     }
     
 }
