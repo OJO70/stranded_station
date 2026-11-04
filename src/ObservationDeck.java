@@ -14,6 +14,8 @@ public class ObservationDeck implements RoomInterface {
 
     protected String lookDescription = "As you look around the observation deck it is deathly quiet...\n";
 
+    public static String[] items = {"Access Card"};
+
     // Empty room for now.
     String roomContent = "";
 
@@ -47,8 +49,15 @@ public class ObservationDeck implements RoomInterface {
         return this.down;
     }
 
-    public String getLookDescription() {
-        return this.lookDescription;
+    public String getLookDescription() 
+    {
+        String items = "";
+        for (String item : this.items) 
+        {
+            items += "You see a " + item + " in the Escape Pod.\n";
+        }
+        String output = this.lookDescription + "\n you see" + items + " Around the room";
+        return output;
     }
 
     public boolean isKeyPresent() {

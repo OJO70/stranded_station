@@ -11,6 +11,8 @@ public class Airlock implements RoomInterface {
 
     protected String lookDescription = "You are in the Airlock.";
 
+    
+
     @Override
     public void setUpRoomConnections() {
         this.north = Game.centralCorridor;
