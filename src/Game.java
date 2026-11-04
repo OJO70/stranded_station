@@ -3,11 +3,8 @@ public class Game {
     private static boolean hasKey = false;
 
 
-    private static boolean isPlaying = true;
+    private static boolean keepPlaying = true;
 
-    private static boolean keepPlaying;
-
-    private static RoomInterface templateRoom = new RoomTemplate();
 
 
     /* Array to store all rooms */
@@ -59,7 +56,10 @@ public class Game {
         roomIntroduction();
         System.out.println("Welcome to the game!");
         while (keepPlaying) {
+            System.out.println("+---------------------------------------------------+");
+            System.out.print("(enter_station|command)++> ");
             UserAction();
+            System.out.println("+---------------------------------------------------+");
             boolean reachedEscapePod = currentLocation == escapePod;
 
             if (keepPlaying && reachedEscapePod) {
@@ -67,19 +67,7 @@ public class Game {
                 return true;
             }
         }
-        
-
-        while(keepPlaying){
-        UserAction();
-        boolean reachedEscapePod = currentLocation==escapePod;
-
-        if (keepPlaying&&reachedEscapePod){
-
-            return true;
-        }
-        }
-        
-        return false; //double check this quits without winning 
+        return false;
 
     }
 
@@ -138,6 +126,19 @@ public class Game {
 
             else if (input[0].equals("look")) {
                 lookCommand();
+            }
+            else if (input[0].equals("m")) {
+                Intro.Map_layout();
+            }
+
+
+            else if (input[0].equals("help")) {
+                helpCommand();
+            }
+
+            else if (input[0].equals("q")) {
+                System.out.println("Goodbye, Thank you for playing");
+                keepPlaying = false;
             }
 
             else if (input[0].equals("q")) {
@@ -216,11 +217,5 @@ public class Game {
 
     // User iunput/command. if statemen to call relevent method from parser.
 
-    /**
-     * Quit the game.
-     */
-    public static void quitCommand() {
-
-    }
 
 }
