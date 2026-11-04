@@ -1,21 +1,43 @@
 public class Game {
+     /* Does the player have the key? */
+    private static boolean hasKey = false;
 
-    private static Room templateRoom = new RoomTemplate();
+    private static RoomInterface templateRoom = new RoomTemplate();
+
+    /* Array to store all rooms */
+    public static RoomInterface observationDeck = null;
+    public static RoomInterface laboratory = null;
+    public static RoomInterface centralCorridor = null;
+    public static RoomInterface crewCabin = null;
+    public static RoomInterface storageBay = null;
+    public static RoomInterface airlock = null;
+    public static RoomInterface escapePod = null;
 
     /* string linked to current location
      * Can be changed to a class call for more genralised code later.
      */
-    private static Room currentLocation = templateRoom;
+    private static RoomInterface currentLocation = templateRoom;
 
-    /* Does the player have the key? */
-    private static boolean hasKey = false;
+    /**
+     * Initialise the game map by setting up all rooms and their connections.
+     * ToDo:
+     * - [ ] Implement the game map initialisation logic
+     * - [ ] Implement the game map room connections
+     */
+    public static void initiliseGameMap(){
 
+    }
 
 
     /**
      * Main game loop will contain the primary loop
      * and control flow logic for the game.
-     * @return
+     * ToDo:
+     * - [ ] Implement the game while loop
+     * - [ ] Implement the game command parser
+     * - [ ] Implement the game command executor
+     *
+     * @return true if player wins, false if player loses or quits. <- there is currently no lose condition.
      */
     public static boolean gameLoop()
     {
@@ -26,13 +48,13 @@ public class Game {
     
 
     /**
-     * 
+     * Game direction logic may be able to simplify.
      * @param direction
      */
     public static void goCommand(final String direction)
     {
 
-        Room nextRoom = null;
+        RoomInterface nextRoom = null;
         if (direction.equals("north")) {
             nextRoom = currentLocation.getNorth();
         } else if (direction.equals("south")) {
@@ -92,7 +114,7 @@ public class Game {
      * Change room location to the new room if room exists.
      * @param newLocation
      */
-    public static void changeLocation(final Room newLocation)
+    public static void changeLocation(final RoomInterface newLocation)
     {
         if (newLocation != null) {
         currentLocation = newLocation;
@@ -111,21 +133,21 @@ public class Game {
     }
 
     /**
-     * 
+     * Allow a player to look around the room and get a description of the room.
      * @param direction
      */
     public static void lookCommand()
     {
-        System.out.println("You are going ");
+        System.out.println("You are looking");
     }
 
     /**
-     * 
+     * Alow a player to get help with the game and the commands available.
      * @param direction
      */
     public static void helpCommand()
     {
-        System.out.println("You are going ");
+        System.out.println(Intro.Tutorial());
     }
 
     /**
@@ -136,13 +158,22 @@ public class Game {
     {
         if (currentLocation.isKeyPresent() && itemName.equals("key")) {
             hasKey = true;
-            currentLocation.keyPresent = false;
+            currentLocation.setKeyPresent(false);
         } else {
             System.out.println("There is no " + itemName + " in this room");
         }
     }
 
+
     //User iunput/command. if statemen to call relevent method from parser.
+
+    /**
+     * Quit the game.
+     */
+    public static void quitCommand() {
+        
+    }
+
 
     
 }
