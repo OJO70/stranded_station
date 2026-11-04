@@ -5,11 +5,11 @@ public class Game {
     private static RoomInterface templateRoom = new RoomTemplate();
 
     /* Array to store all rooms */
+    public static RoomInterface centeralCorridor = null;
     public static RoomInterface observationDeck = null;
-    public static RoomInterface laboratory = null;
-    public static RoomInterface centralCorridor = null;
+    public static RoomInterface labratory = null;
     public static RoomInterface crewCabin = null;
-    public static RoomInterface storageBay = null;
+    public static RoomInterface storageRoom = null;
     public static RoomInterface airlock = null;
     public static RoomInterface escapePod = null;
 
