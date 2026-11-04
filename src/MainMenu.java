@@ -24,9 +24,9 @@ public class MainMenu {
         while(true){
 
             int choice = new UUtils().consoleInt();
-             // consume the newline character after reading the integer
+
             if (choice>=1 && choice<=MenuChoices){ 
-                
+
                 return choice;
 
             }
@@ -77,11 +77,14 @@ public class MainMenu {
 
             while(true)
             {
-                System.out.println("Please select an option from the Menu");
+                System.out.println("Please press \"1\" to start the game or \"2\" to return to main menu");
+
+
                 int start_game = new UUtils().consoleInt();
 
                 if (start_game==1)
                 { 
+
                     boolean exitCondition = Game.gameLoop();
                     if (exitCondition) {
                       System.out.println("Congratulations YOU WON !!!!!!!!🎉🥳");
@@ -91,13 +94,15 @@ public class MainMenu {
                     return;
 
                 }
+                if (start_game ==2)
+                {
+                    MainMenu();
+                }
+
 
                 
 
             }
-
-            
-
 
 
         }
