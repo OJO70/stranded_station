@@ -1,9 +1,5 @@
 import java.util.Scanner;
 
-
-
-
-
 public class MainMenu {
     private static final int MenuChoices=4;//Assuming there are ony 4 options to choose from? Start,help, story/background,quit.
 
@@ -26,6 +22,24 @@ public class MainMenu {
         }
 
         }
+        public static void ShowCommands()throws Exception{
+        System.out.println("Available Commands:");
+        System.out.println("⬆️ go north     go south ⬇️"); //add the other commands next release e.g take,look etc
+        System.out.println("➡️ go east      go west ⬅️");
+        System.out.println("🔼 up           down 🔽");
+        
+        System.out.println("menu - Return to main menu");
+        System.out.println("quit - Exits the program");
+
+        
+
+
+
+    }
+
+
+
+
     
     public static void MainMenu() throws Exception 
     {
