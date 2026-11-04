@@ -117,7 +117,7 @@ public class Game {
             }
 
             else if (input[0].equals("go")) {
-                goCommand(input[1]);
+                goCommand(input[1]); 
             }
 
             else if (input[0].equals("take")) {
