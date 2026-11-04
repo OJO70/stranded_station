@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class UUtils {
 
-    private Scanner stdin = new Scanner(System.in);
+    private static Scanner stdin = new Scanner(System.in);
 
     public Double consoleDouble() {
         System.out.printf("please enter a double: ");
@@ -48,27 +49,15 @@ public class UUtils {
         return null;
     }
 
-    public double badDoubleInput() {
-        //double output = 0;
-        //boolean hasInput = false;
+    private static String[] CommandParser() throws Exception {
+        String input = stdin.nextLine();
+        // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
+        String[] splitStr = input.split(" ");
 
-        do {
-            System.out.printf("please enter a double: ");
-            try {
-                double output = stdin.nextDouble();
-                this.clearInputStream();
-                return output;
-            } catch (Exception e) {
-                System.out.println("invalid input");
-                stdin.nextLine();
-            }
-        }while(true);
-
-        //throw new IllegalStateException();
-    }
-
-    private void clearInputStream() {
-        stdin.nextLine();
+        if (splitStr.length >= 0 && splitStr.length <= 2) {
+            return splitStr;
+        }
+        throw new Exception();
     }
     
 }
