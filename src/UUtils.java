@@ -49,7 +49,7 @@ public class UUtils {
         return null;
     }
 
-    private static String[] CommandParser() throws Exception {
+    public static String[] CommandParser() throws Exception {
         String input = stdin.nextLine();
         // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
         String[] splitStr = input.split(" ");

@@ -19,7 +19,7 @@ public class Game {
      */
     public static boolean gameLoop()
     {
-        System.out.println("You are in the game loop");
+        UserAction();
         return true;
     }
 
@@ -49,6 +49,43 @@ public class Game {
             System.out.println(direction + " is not a valid direction");
         }
         changeLocation(nextRoom);
+    }
+
+    //Get user input command. Call the parser from utils, with the try and execption. Include while loop. In else if not valid, set string to null; which would do the do while loop again.
+    public static void UserAction () {
+        String[] input = null;
+
+        do {
+            try {
+                input = UUtils.CommandParser();
+            }
+            catch (Exception e) {
+                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
+            }
+
+            if (input[0].equals("h")) {
+
+            }
+
+            else if (input[0].equals("go")) {
+                goCommand(input[1]);
+            }
+
+            else if (input[0].equals("take")) {
+                
+            }
+
+            else if (input[0].equals("look")) {
+                lookCommand();
+            }
+
+            //Implement drop in future
+
+            else {
+                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
+            }
+        }
+        while (input == null);
     }
 
     /**
@@ -104,6 +141,8 @@ public class Game {
             System.out.println("There is no " + itemName + " in this room");
         }
     }
+
+    //User iunput/command. if statemen to call relevent method from parser.
 
     
 }
