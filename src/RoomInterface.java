@@ -8,6 +8,7 @@ public interface RoomInterface {
     public RoomInterface getWest();
     public RoomInterface getUp();
     public RoomInterface getDown();
+    public String[] getItems();
 
     public String getLookDescription();
 
