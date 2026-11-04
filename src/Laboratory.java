@@ -16,6 +16,8 @@ public class Laboratory implements RoomInterface {
     protected String name = "Labroratory";
     protected String lookDescription = "You are now in the Labroratory.";
 
+    public static String[] items = {"Datapad"};
+
     @Override
     public void setUpRoomConnections() {
         this.south = Game.centralCorridor;
@@ -47,8 +49,15 @@ public class Laboratory implements RoomInterface {
         return this.down;
     }
 
-    public String getLookDescription() {
-        return this.lookDescription;
+    public String getLookDescription() 
+    {
+        String items = "";
+        for (String item : this.items) 
+        {
+            items += "You see a " + item + " in the Laboratory.\n";
+        }
+        String output = this.lookDescription + "\n you see" + items + " Around the room";
+        return output;
     }
 
     public boolean isKeyPresent() {

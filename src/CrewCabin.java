@@ -31,7 +31,7 @@ public class CrewCabin implements RoomInterface {
         return this.east;
     }
 
-    
+
     public RoomInterface getWest() {
         return this.west;
     }
@@ -49,7 +49,7 @@ public class CrewCabin implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
-            items += "You see a " + item + " in the Escape Pod.\n";
+            items += "You see a " + item + " in the Crew Cabin.\n";
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;

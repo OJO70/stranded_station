@@ -12,6 +12,8 @@ public class StorageBay implements RoomInterface {
     protected String name = "Storage Bay";
     protected String lookDescription = "You are in the Storage Bay.";
 
+    public static String[] items = {"Power Cell"};
+
     @Override
     public void setUpRoomConnections() {
         this.east = Game.centralCorridor;
@@ -41,8 +43,15 @@ public class StorageBay implements RoomInterface {
         return this.down;
     }
 
-    public String getLookDescription() {
-        return this.lookDescription;
+    public String getLookDescription() 
+    {
+        String items = "";
+        for (String item : this.items) 
+        {
+            items += "You see a " + item + " in the Storage Bay.\n";
+        }
+        String output = this.lookDescription + "\n you see" + items + " Around the room";
+        return output;
     }
 
     public boolean isKeyPresent() {
