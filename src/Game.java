@@ -2,14 +2,9 @@ public class Game {
      /* Does the player have the key? */
     private static boolean hasKey = false;
 
-<<<<<<< Updated upstream
-=======
     private static boolean isPlaying = true;
 
     private static boolean keepPlaying;
-
-    private static RoomInterface templateRoom = new RoomTemplate();
->>>>>>> Stashed changes
 
     /* Array to store all rooms */
     public static RoomInterface observationDeck = new ObservationDeck();
@@ -55,20 +50,10 @@ public class Game {
      */
     public static boolean gameLoop()
     {
-<<<<<<< Updated upstream
+
         setUpGameMap();
         roomIntroduction();
         System.out.println("Welcome to the game!");
-        while (true) {
-            
-        UserAction();
-            if (currentLocation == Game.escapePod) {
-                System.out.println("You have reached the escape pod and won the game!");
-                return true;
-            }
-        }
-        
-=======
         while(keepPlaying){
         UserAction();
         boolean reachedEscapePod = currentLocation==escapePod;
@@ -80,7 +65,7 @@ public class Game {
         }
         
         return false; //double check this quits without winning 
->>>>>>> Stashed changes
+
     }
 
     
