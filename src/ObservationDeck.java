@@ -8,7 +8,7 @@ public class ObservationDeck implements RoomInterface {
     protected RoomInterface east = null;
     protected RoomInterface west = null;
     protected RoomInterface up = null;
-    protected RoomInterface down = Game.observationDeck;
+    protected RoomInterface down = Game.laboratory;
 
     protected boolean keyPresent = false;
 
@@ -16,6 +16,12 @@ public class ObservationDeck implements RoomInterface {
 
     // Empty room for now.
     String roomContent = "";
+
+    @Override
+    public void setUpRoomConnections() {
+        this.down = Game.laboratory;
+        
+    }
     
     public RoomInterface getNorth() {
         return this.north;

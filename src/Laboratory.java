@@ -13,6 +13,13 @@ public class Laboratory implements RoomInterface {
     protected boolean keyPresent = false;
 
     protected String lookDescription = "You are now in the Labroratory.";
+
+    @Override
+    public void setUpRoomConnections() {
+        this.south = Game.centralCorridor;
+        this.up = Game.observationDeck;
+        
+    }
     
     public RoomInterface getNorth() {
         return this.north;
