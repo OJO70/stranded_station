@@ -48,5 +48,19 @@ public class UUtils {
         throw new Exception();
 
     }
+
+    // for testing
+    public static String[] CommandParserDummy(String input) throws Exception {
+
+        //String input = stdin.nextLine();
+        // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
+        String[] splitStr = input.split(" ");
+
+        if (splitStr.length >= 0 && splitStr.length <= 2) {
+            return splitStr;
+        }
+        throw new Exception();
+
+    }
     
 }

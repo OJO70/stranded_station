@@ -100,6 +100,10 @@ public class Game {
     // Get user input command. Call the parser from utils, with the try and
     // execption. Include while loop. In else if not valid, set string to null;
     // which would do the do while loop again.
+    // public static String UserInput() {
+    //     return 
+    // }
+
     public static void UserAction() {
         String[] input = null;
 
