@@ -5,6 +5,20 @@ public class MainMenu {
 
     public static  Scanner stdin = new Scanner(System.in);
 
+
+    public static String[] CommandParser() throws Exception {
+
+        String input = stdin.nextLine();
+        // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
+        String[] splitStr = input.split(" ");
+
+        if (splitStr.length >= 0 && splitStr.length <= 2) {
+            return splitStr;
+        }
+        throw new Exception();
+
+    }
+
     public static int ReadMenuChoice() throws Exception { // looked at chris's code and you can incorpporate this after he lists menu choices int read_menu_number = to this method.
 
         while(true){
@@ -54,22 +68,45 @@ public class MainMenu {
 
         if (read_menu_number == 1)
         {
-            Intro.Map_layout();
-            boolean exitCondition = Game.gameLoop();
-            if (exitCondition) {
-                System.out.println("WON");
-            }else {
-                System.out.println("You have quit the game");
-            }
-            return;
 
+            Intro.Intro();
+            Intro.Tutorial();
+            Intro.Map_layout();
+
+            while(true)
+            {
+                System.out.println("Please select an option from the Menu");
+                int start_game = new UUtils().consoleInt();
+
+                if (start_game==1)
+                { 
+                    boolean exitCondition = Game.gameLoop();
+                    if (exitCondition) {
+                      System.out.println("WON");
+                    }else {
+                      System.out.println("You have quit the game");
+                    }
+                    return;
+
+                }
+
+                
+
+            }
 
             
+
 
         }
         else if (read_menu_number == 2)
         {
-            System.out.println("This is a texted base adventure game you will be required to type in commands your character will perform such as\n 'go', 'grab' , 'take' , 'check'  \n");
+            System.out.println("This is a texted base adventure game you will be required to type in commands your character will perform such as:\n");
+            System.out.println("⬆️ go north     go south ⬇️\n"); //add the other commands next release e.g take,look etc
+            System.out.println("➡️ go east      go west ⬅️\n");
+            System.out.println("🔼 up           down 🔽\n ");
+        
+            System.out.println("menu - Return to main menu\n");
+            System.out.println("quit - Exits the program\n ");
         }
         else if (read_menu_number == 3)
         {
@@ -81,4 +118,10 @@ public class MainMenu {
         }
         
     }
+
+
+
+
+
+
 }
