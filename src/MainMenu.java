@@ -108,13 +108,7 @@ public class MainMenu {
         }
         else if (read_menu_number == 2)
         {
-            System.out.println("This is a texted base adventure game you will be required to type in commands your character will perform such as:\n");
-            System.out.println("⬆️ go north     go south ⬇️\n"); //add the other commands next release e.g take,look etc
-            System.out.println("➡️ go east      go west ⬅️\n");
-            System.out.println("🔼 up           down 🔽\n ");
-        
-            System.out.println("menu - Return to main menu\n");
-            System.out.println("quit - Exits the program\n ");
+            ShowCommands();
         }
         else if (read_menu_number == 3)
         {
