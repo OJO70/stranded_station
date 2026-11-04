@@ -2,14 +2,22 @@ public class CentralCorridor implements RoomInterface {
 
     protected RoomInterface north = Game.laboratory;
     protected RoomInterface south = Game.airlock;
-    protected RoomInterface east = Game.crewCabin;
-    protected RoomInterface west = Game.storageBay;
+    protected RoomInterface east = Game.storageBay;
+    protected RoomInterface west = Game.crewCabin;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
     protected boolean keyPresent = false;
 
     protected String lookDescription = "You are in the Central Corridor.";
+
+    @Override
+    public void setUpRoomConnections() {
+        this.north = Game.laboratory;
+        this.south = Game.airlock;
+        this.east = Game.storageBay;
+        this.west = Game.crewCabin;
+    }
     
     public RoomInterface getNorth() {
         return this.north;

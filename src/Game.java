@@ -2,21 +2,20 @@ public class Game {
      /* Does the player have the key? */
     private static boolean hasKey = false;
 
-    private static RoomInterface templateRoom = new RoomTemplate();
 
     /* Array to store all rooms */
-    public static RoomInterface observationDeck = null;
-    public static RoomInterface laboratory = null;
-    public static RoomInterface centralCorridor = null;
-    public static RoomInterface crewCabin = null;
-    public static RoomInterface storageBay = null;
-    public static RoomInterface airlock = null;
-    public static RoomInterface escapePod = null;
+    public static RoomInterface observationDeck = new ObservationDeck();
+    public static RoomInterface laboratory = new Laboratory();
+    public static RoomInterface centralCorridor = new CentralCorridor();
+    public static RoomInterface crewCabin = new CrewCabin();
+    public static RoomInterface storageBay = new StorageBay();
+    public static RoomInterface airlock = new Airlock();
+    public static RoomInterface escapePod = new EscapePod();
 
     /* string linked to current location
      * Can be changed to a class call for more genralised code later.
      */
-    private static RoomInterface currentLocation = templateRoom;
+    private static RoomInterface currentLocation = crewCabin;
 
     /**
      * Initialise the game map by setting up all rooms and their connections.
@@ -24,8 +23,15 @@ public class Game {
      * - [ ] Implement the game map initialisation logic
      * - [ ] Implement the game map room connections
      */
-    public static void initiliseGameMap(){
-
+    public static void setUpGameMap(){
+        
+        observationDeck.setUpRoomConnections();
+        laboratory.setUpRoomConnections();
+        centralCorridor.setUpRoomConnections();
+        crewCabin.setUpRoomConnections();
+        storageBay.setUpRoomConnections();
+        airlock.setUpRoomConnections();
+        escapePod.setUpRoomConnections();
     }
 
 
@@ -41,8 +47,18 @@ public class Game {
      */
     public static boolean gameLoop()
     {
+        setUpGameMap();
+        roomIntroduction();
+        System.out.println("Welcome to the game!");
+        while (true) {
+            
         UserAction();
-        return true;
+            if (currentLocation == Game.escapePod) {
+                System.out.println("You have reached the escape pod and won the game!");
+                return true;
+            }
+        }
+        
     }
 
     
@@ -117,8 +133,16 @@ public class Game {
     public static void changeLocation(final RoomInterface newLocation)
     {
         if (newLocation != null) {
-        currentLocation = newLocation;
+            // if (newLocation == Game.airlock && !hasKey) {
+            //     System.out.println("Acess denied. You need a key to enter the airlock.");
 
+            // }else {
+            //     currentLocation = newLocation;
+            //     roomIntroduction();
+            // }
+            currentLocation = newLocation;
+            roomIntroduction();
+            
         } else {
             System.out.println("You cannot go that way");
         }

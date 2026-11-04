@@ -10,6 +10,12 @@ public class EscapePod implements RoomInterface {
     protected boolean keyPresent = false;
 
     protected String lookDescription = "You are in the Escape Pod.";
+
+    @Override
+    public void setUpRoomConnections() {
+        this.up = Game.airlock;
+        
+    }
     
     public RoomInterface getNorth() {
         return this.north;

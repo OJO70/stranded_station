@@ -15,7 +15,6 @@ public class UUtils {
             if (stdin.hasNextInt()) {
                 int i = stdin.nextInt();
                 stdin.nextLine();
-                stdin.close();
                 return i;
             }else {
                 System.out.println("Invalid input.");

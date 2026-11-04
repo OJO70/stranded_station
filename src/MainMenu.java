@@ -24,9 +24,9 @@ public class MainMenu {
         while(true){
 
             int choice = new UUtils().consoleInt();
-
+             // consume the newline character after reading the integer
             if (choice>=1 && choice<=MenuChoices){ 
-
+                
                 return choice;
 
             }
@@ -80,13 +80,22 @@ public class MainMenu {
 
                 if (start_game==1)
                 { 
-                    Game.gameLoop();
+                    boolean exitCondition = Game.gameLoop();
+                    if (exitCondition) {
+                      System.out.println("WON");
+                    }else {
+                      System.out.println("You have quit the game");
+                    }
+                    return;
 
                 }
 
                 
 
             }
+
+            
+
 
         }
         else if (read_menu_number == 2)

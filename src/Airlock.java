@@ -10,6 +10,12 @@ public class Airlock implements RoomInterface {
     protected boolean keyPresent = false;
 
     protected String lookDescription = "You are in the Airlock.";
+
+    @Override
+    public void setUpRoomConnections() {
+        this.north = Game.centralCorridor;
+        this.down = Game.escapePod;
+    }
     
     public RoomInterface getNorth() {
         return this.north;
@@ -59,6 +65,8 @@ public class Airlock implements RoomInterface {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
     }
+
+    
 
     
     

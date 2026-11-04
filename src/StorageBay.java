@@ -10,6 +10,11 @@ public class StorageBay implements RoomInterface {
     protected boolean keyPresent = false;
 
     protected String lookDescription = "You are in the Storage Bay.";
+
+    @Override
+    public void setUpRoomConnections() {
+        this.east = Game.centralCorridor;
+    }
     
     public RoomInterface getNorth() {
         return this.north;

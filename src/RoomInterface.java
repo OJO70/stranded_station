@@ -13,7 +13,7 @@ public interface RoomInterface {
     public boolean isKeyPresent();
     public void setKeyPresent(final boolean keyPresent);
 
-    // public void setUpRoomConnections(); <-- later
+    public void setUpRoomConnections();
 
     // public RoomInterface goDirection(final String direction) throws IllegalArgumentException; <- maybe later
 }
