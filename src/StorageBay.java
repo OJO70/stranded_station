@@ -12,7 +12,7 @@ public class StorageBay implements RoomInterface {
     protected String name = "Storage Bay";
     protected String lookDescription = "A city of boxes tower above you. The generator is tucked behind scrap metal,\nhiding from any prying eyes. A spare power cell looks in surprisingly good condition next to it...\n";
 
-    public static String[] items = {"Power Cell"};
+    public static String[] items = {"Power Cell", "", "", "", ""};
 
 
     @Override

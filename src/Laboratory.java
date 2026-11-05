@@ -17,7 +17,8 @@ public class Laboratory implements RoomInterface {
     protected String lookDescription = "The bubbling of test tubes drone on as you step foot in the laboratory.\nThere is an arsenal of equipment scattered accross the room. Looks like everyone left in a hurry...\n";
 
 
-    public static String[] items = {"Datapad"};
+    public static String[] items = {"Datapad", "", "", "", ""};
+
 
     @Override
     public void setUpRoomConnections() {
