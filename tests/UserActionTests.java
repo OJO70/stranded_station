@@ -12,7 +12,20 @@ public class UserActionTests {
         String[] test = UUtils.CommandParserDummy("go north");
         assertArrayEquals( new String[] {"go", "north"}, test);
         
+        test = UUtils.CommandParserDummy("go south");
+        assertArrayEquals( new String[] {"go", "south"}, test);
 
+        test = UUtils.CommandParserDummy("go east");
+        assertArrayEquals( new String[] {"go", "east"}, test);
+
+        test = UUtils.CommandParserDummy("go west");
+        assertArrayEquals( new String[] {"go", "west"}, test);
+
+        test = UUtils.CommandParserDummy("go up");
+        assertArrayEquals( new String[] {"go", "up"}, test);
+        
+        test = UUtils.CommandParserDummy("go down");
+        assertArrayEquals( new String[] {"go", "down"}, test);
     }
 
     @Test 
