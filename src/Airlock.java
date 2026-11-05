@@ -12,7 +12,7 @@ public class Airlock implements RoomInterface {
     protected String name = "Airlock";
     protected String lookDescription = "The cold steel wall stands tall, a dim amber glow shines at the base of it. It looks like there's a place place an access card here...\n";
 
-    public static String[] items = {""};
+    public static String[] items = {"", "", "", "", ""};
 
     @Override
     public void setUpRoomConnections() {

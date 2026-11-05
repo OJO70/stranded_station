@@ -201,10 +201,8 @@ public class Game {
                 }
 
                 else if (input[0].equals("drop")) {
-                    // dropCommand();
+                    dropCommand(input[1]);
                 }
-
-                // Implement drop in future
 
                 else {
                     System.out.printf("Not a valid command. Please press \"h\" for help.\n");
@@ -302,6 +300,21 @@ public class Game {
         currentLocation.getItems()[source] = "";
     }
 
+    public static void MoveItemFromDestinationToSource(int source, int dest) throws Exception {
+
+        if (source == -1) {
+            throw new Exception("Item is not in room");
+        }
+
+        if (dest == -1) {
+            throw new Exception("Inventory is full");
+        }
+
+        currentLocation.getItems()[dest] = Inventory.inventory[source];
+
+        Inventory.inventory[source] = "";
+    }
+
     public static void takecommand(final String itemName) throws Exception {
 
         if (currentLocation.isKeyPresent() && itemName.equalsIgnoreCase("Access Card")) {
@@ -318,7 +331,17 @@ public class Game {
         }
     }
 
-    public static void quitCommand() {
+    public static void dropCommand(final String itemName) throws Exception {
+
+        MoveItemFromDestinationToSource(Find_index_of_item_from_room(Inventory.inventory, itemName),
+                FindLastEmptySpaceInInventory(currentLocation.getItems()));
+
+        if (itemName.equals("access card")) {
+            hasKey = false;
+            currentLocation.setKeyPresent(true);
+        }
+
+        // Find_index_of_item_from_room(null, itemName)
 
     }
 
@@ -333,10 +356,13 @@ public class Game {
         setUpGameMap();
         for (int i = 0; i < Inventory.inventory.length; i++) {
             Inventory.inventory[i] = "";
+
         }
 
-        keepPlaying = true;
-        currentLocation = crewCabin;
+    }
+
+    public static void quitCommand() {
+
     }
 
     public static void dumbySetKey(final boolean keyVal) {
