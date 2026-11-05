@@ -72,7 +72,7 @@ public class MainMenu {
                 int start_game = new UUtils().consoleInt();
 
                 if (start_game == 1) {
-
+                    
                     boolean exitCondition = Game.gameLoop();
                     if (exitCondition) {
                         System.out.println("Congratulations YOU WON !!!!!!!!🎉🥳");

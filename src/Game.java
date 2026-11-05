@@ -16,6 +16,8 @@ public class Game {
     public static RoomInterface airlock = new Airlock();
     public static RoomInterface escapePod = new EscapePod();
 
+    
+
     /*
      * string linked to current location
      * Can be changed to a class call for more genralised code later.
@@ -255,9 +257,10 @@ public class Game {
      * 
      * @param direction
      */
-    public static void lookCommand() {
-        System.out.println("You are looking");
-        System.out.println(currentLocation.getLookDescription());
+    public static String lookCommand() {
+        String output = "You are looking: ";
+        output += currentLocation.getLookDescription();
+        return output;
         
     }
 
@@ -346,6 +349,23 @@ public class Game {
 
             public static void quitCommand() {
 
+        }
+
+        public static void gameRest() {
+            observationDeck = new ObservationDeck();
+            laboratory = new Laboratory();
+            centralCorridor = new CentralCorridor();
+            crewCabin = new CrewCabin();
+            storageBay = new StorageBay();
+            airlock = new Airlock();
+            escapePod = new EscapePod();
+            setUpGameMap();
+            for (int i = 0; i < Inventory.inventory.length; i++) {
+                Inventory.inventory[i] = "";
+            }
+
+            keepPlaying = true;
+            currentLocation = crewCabin;
         }
     }
 
