@@ -52,6 +52,8 @@ public class GameTests {
 
         assertDoesNotThrow(()->{Game.changeLocation(null);});
 
+        // most functions tested in goCommand Tests.
+
 
     }
 
