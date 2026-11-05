@@ -102,6 +102,16 @@ public class GameTests {
     @Test 
     public void KeyMovementTests() throws Exception {
         
+        Game.gameRest();
+        Game.changeLocation(Game.centralCorridor);
+        assertEquals(Game.centralCorridor, Game.currentLocation);
+        assertEquals("Acess denied. You need a key to enter the airlock.", Game.goCommand("south"));
+
+        Game.dumbySetKey(true);
+        assertEquals("You enter the Airlock", Game.goCommand("south"));
+        assertEquals(Game.airlock, Game.currentLocation);
+
+        
     }
 
     @Test 
@@ -111,6 +121,11 @@ public class GameTests {
 
     @Test 
     public  void validCommands() {
+
+    }
+
+    @Test 
+    public void takeCommandTests() {
 
     }
 
