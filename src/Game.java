@@ -119,7 +119,7 @@ public class Game {
 
 
             else if (input[0].equals("take")) {
-                takeCommand(input[1]);
+                takecommand(input[1]);
             }
 
             else if (input[0].equals("look")) {
@@ -201,7 +201,8 @@ public class Game {
      */
     public static void lookCommand() {
         System.out.println("You are looking");
-        currentLocation.getLookDescription();
+        System.out.println(currentLocation.getLookDescription());
+        
     }
 
     /**
@@ -269,7 +270,7 @@ public class Game {
         {
 
         
-            MoveItemFromSourceToDestination(Find_index_of_item_from_room(currentLocation.getItems(), itemName), FindLastEmptySpaceInInventory(Inventory.inventory));
+            
 
             if (currentLocation.isKeyPresent() && itemName.equals("key")) {
                 hasKey = true;
@@ -277,7 +278,13 @@ public class Game {
             } 
             else 
             {
-                System.out.println("There is no " + itemName + " in this room");
+                int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
+                if (itemIndex != -1) {
+                    MoveItemFromSourceToDestination(itemIndex, FindLastEmptySpaceInInventory(Inventory.inventory));
+                }else {
+                    System.out.println("There is no " + itemName + " in this room");
+                }
+                
             }
         }
 

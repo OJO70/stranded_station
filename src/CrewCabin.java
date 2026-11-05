@@ -11,7 +11,6 @@ public class CrewCabin implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String name = "Crew Cabin";
     protected String lookDescription = "You are in the Crew Cabin.";
 
     public static String[] items = {"Torch"};
