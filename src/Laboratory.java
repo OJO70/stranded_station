@@ -20,6 +20,10 @@ public class Laboratory implements RoomInterface {
     public static String[] items = {"Datapad", "", "", "", ""};
 
 
+    public Laboratory() {
+        items = new String[] {"Datapad", "", "", "", ""};
+    }
+
     @Override
     public void setUpRoomConnections() {
         this.south = Game.centralCorridor;
@@ -56,10 +60,12 @@ public class Laboratory implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
-            items += "You see a " + item + " in the Laboratory.\n";
-
+            if (!item.equals("")) {
+                items += "You see a " + item + " in the " + name + ".\n";
+            }
+            
         }
-        String output = this.lookDescription + "\n you see" + items + " Around the room";
+        String output = this.lookDescription + "\n" + items;
         return output;
     }
 
