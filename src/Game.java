@@ -226,8 +226,10 @@ public class Game {
                 takecommand(input[1]);
             }
 
-            else if (input[0].equalsIgnoreCase("look")) {
-                lookCommand();
+
+            else if (input[0].equals("look")) {
+                output = lookCommand();
+
             }
             else if (input[0].equalsIgnoreCase("m")) {
                 Intro.Map_layout();
@@ -244,8 +246,10 @@ public class Game {
                 keepPlaying = false;
             }
 
-            else if (input[0].equalsIgnoreCase("drop")) {
-                //dropCommand();
+
+            else if (input[0].equals("drop")) {
+                dropCommand(input[1]);
+
             }
 
             // Implement drop in future
@@ -360,6 +364,25 @@ public class Game {
         currentLocation.getItems()[source] = "";
     }
 
+    public static void MoveItemFromDestinationToSource(int source, int dest) throws Exception 
+    {
+
+
+        if (source == -1) 
+        {
+            throw new Exception("Item is not in room");
+        }
+
+        if (dest == -1) 
+        {
+            throw new Exception("Inventory is full");
+        }
+
+        currentLocation.getItems()[dest] = Inventory.inventory[source];
+
+        Inventory.inventory[source] = "";
+    }
+
 
 
         public static void takecommand(final String itemName) throws Exception
@@ -382,6 +405,19 @@ public class Game {
                 }
                 
             }
+        }
+
+        public static void dropCommand(final String itemName) throws Exception {
+
+            MoveItemFromDestinationToSource(Find_index_of_item_from_room(Inventory.inventory, itemName), FindLastEmptySpaceInInventory(currentLocation.getItems()));
+
+            if (itemName.equals("access card")) {
+                hasKey = false;
+                currentLocation.setKeyPresent(true);
+            }
+
+            // Find_index_of_item_from_room(null, itemName)
+
         }
 
             public static void quitCommand() {
