@@ -15,7 +15,7 @@ public class CrewCabin implements RoomInterface {
     protected String lookDescription = "The ceiling lights flicker weakly... The air is still... You hear the groans of the airvents, as if the station is trying to warn you...\n";
 
 
-    public static String[] items = {"Torch"};
+    public static String[] items = {"Torch", "", "", "", ""};
 
     @Override
     public void setUpRoomConnections() {
