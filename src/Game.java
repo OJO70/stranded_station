@@ -195,7 +195,7 @@ public class Game {
             }
 
             else if (input[0].equals("look")) {
-                lookCommand();
+                output = lookCommand();
             }
             else if (input[0].equals("m")) {
                 Intro.Map_layout();
