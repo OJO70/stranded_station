@@ -285,6 +285,11 @@ public class Game {
 
             MoveItemFromSourceToDestination(Find_index_of_item_from_room(Inventory.inventory, itemName), FindLastEmptySpaceInInventory(currentLocation.getItems()));
 
+            if (itemName.equals("access card")) {
+                hasKey = false;
+                currentLocation.setKeyPresent(true);
+            }
+
         }
 
             public static void quitCommand() {
