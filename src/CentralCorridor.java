@@ -12,7 +12,7 @@ public class CentralCorridor implements RoomInterface {
     protected String name = "Central Corridor";
     protected String lookDescription = "You are in the Central Corridor.";
 
-    public static String[] items = {""};
+    public static String[] items = { "" };
 
     @Override
     public void setUpRoomConnections() {
@@ -73,6 +73,8 @@ public class CentralCorridor implements RoomInterface {
     @Override
     public String getName() {
         return this.name;
+
+
     }
 
     @Override
@@ -80,5 +82,4 @@ public class CentralCorridor implements RoomInterface {
         
         return this.items;
     }
-    
 }
