@@ -14,7 +14,7 @@ public class ObservationDeck implements RoomInterface {
     protected boolean keyPresent = true;
 
     protected String name = "Observation Deck";
-    protected String lookDescription = "As you look around the observation deck it is deathly quiet...\n";
+    protected String lookDescription = "As you look around the observation deck it is deathly quiet...\nThe cold emptyness of space floods your view. Nothing for forever...\n";
 
     public static String[] items = {"Access Card"};
 
