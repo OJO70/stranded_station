@@ -80,6 +80,9 @@ public class Game {
     public static boolean gameLoop() {
 
         setUpGameMap();
+        gameRest();
+        keepPlaying = true;
+        hasKey = false;
 
         System.out.println("Welcome to the game!");
         String priviouseCommand = currentLocation.getLookDescription();
