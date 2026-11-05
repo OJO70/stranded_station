@@ -7,6 +7,7 @@ public class CentralCorridor implements RoomInterface {
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
+
     protected boolean keyPresent = false;
 
     protected String name = "Central Corridor";
