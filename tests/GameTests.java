@@ -59,7 +59,7 @@ public class GameTests {
 
     @Test 
     public void DissalowedMovementTests() throws Exception {
-
+        
     }
 
     @Test 
