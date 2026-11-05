@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutionException;
 
 public class UUtils {
 
-    private static Scanner stdin = new Scanner(System.in);
+    public static Scanner stdin = new Scanner(System.in);
 
     
 

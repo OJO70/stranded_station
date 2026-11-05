@@ -20,7 +20,7 @@ public class Game {
      * string linked to current location
      * Can be changed to a class call for more genralised code later.
      */
-    private static RoomInterface currentLocation = crewCabin;
+    public  static RoomInterface currentLocation = crewCabin;
 
     /**
      * Initialise the game map by setting up all rooms and their connections.
@@ -57,9 +57,12 @@ public class Game {
         System.out.println("Welcome to the game!");
         String priviouseCommand = currentLocation.getLookDescription();
         while (keepPlaying) {
+
             
             displayToCli(priviouseCommand);
             priviouseCommand = UserAction();
+
+
             boolean reachedEscapePod = currentLocation == escapePod;
 
             if (keepPlaying && reachedEscapePod) {
@@ -174,7 +177,10 @@ public class Game {
             }
 
             else if (input[0].equals("go")) {
+
                 output = goCommand(input[1]);
+
+
             }
 
 
