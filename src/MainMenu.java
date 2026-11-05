@@ -94,6 +94,7 @@ public class MainMenu {
         } else if (read_menu_number == 3) {
             System.out.println(
                     "You are an astronaut on the ISS and your station has been hit by debris. In the panic your team has left without you but there is one pod left you need to explore the station, repair the pod and escape the station.\n");
+                    MainMenu();
         } else {
 
             return;
