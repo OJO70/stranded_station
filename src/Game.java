@@ -104,6 +104,7 @@ public class Game {
                 "|>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>T<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<|\n";
         if (commandOutput != "" && commandOutput != null) {
 
+
             // print += commandOutput + "\n";
             print += displayCommandOutput(commandOutput);
         }
@@ -111,6 +112,14 @@ public class Game {
         print += cliGameInterface();
         System.out.print(print);
     }
+
+    private static String cliGameInterface() {
+        String output = null;
+        output = "+-------------------------------------------------------------+\n";
+        output += "(enter_station|command)[" + currentLocation.getName() + "]++> ";
+        return output;
+    }
+
 
     private static String displayCommandOutput(final String commandOutput) {
         int leng = 58;
@@ -147,15 +156,10 @@ public class Game {
         return output;
     }
 
-    private static String cliGameInterface() {
-        String output = null;
-        output = "+-------------------------------------------------------------+\n";
-        output += "(enter_station|command)[" + currentLocation.getName() + "]++> ";
-        return output;
-    }
 
     private static String displayCliInventory() {
         String output = null;
+
         int leng = 61;
         int currEmpty = 0;
         output = "+-------------------------------------------------------------+\n" +
@@ -174,12 +178,12 @@ public class Game {
                 currEmpty++;
             }
 
+
         }
 
         if (currEmpty == Inventory.inventory.length) {
             output += "|>>>>>>>>>--------------------NO-ITEMS---------------<<<<<<<<<|\n";
         }
-
         return output;
     }
 
@@ -205,7 +209,7 @@ public class Game {
         } else if (direction.equalsIgnoreCase("down")) {
             nextRoom = currentLocation.getDown();
         } else {
-            output = direction + " is not a valid direction";
+            return direction + " is not a valid direction";
         }
         output = changeLocation(nextRoom);
         return output;
@@ -228,22 +232,26 @@ public class Game {
 
                 if (input[0].equals("h")) {
 
+
                     MainMenu.ShowCommands();
 
                 }
 
-                else if (input[0].equals("go")) {
+                else if (input[0].equalsIgnoreCase("go")) {
 
                     output = goCommand(input[1]);
 
+
                 }
+
 
                 else if (input[0].equalsIgnoreCase("take")) {
                     output = "you try to pickup: " + input[1];
                     takecommand(input[1]);
                 }
 
-                else if (input[0].equals("look")) {
+
+                else if (input[0].equalsIgnoreCase("look")) {
                     output = lookCommand();
 
                 } else if (input[0].equalsIgnoreCase("m")) {
@@ -270,7 +278,6 @@ public class Game {
                 else {
                     System.out.printf("Not a valid command. Please press \"h\" for help.\n");
                 }
-
             } catch (Exception e) {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
@@ -295,8 +302,6 @@ public class Game {
                 currentLocation = newLocation;
                 output = "You enter the " + currentLocation.getName();
             }
-            // currentLocation = newLocation;
-            // roomIntroduction();
 
         } else {
             output = "You cannot go that way";
@@ -329,12 +334,16 @@ public class Game {
      * 
      * @param direction
      */
+     public static int Find_index_of_item_from_room(String[] items , String itemName ) 
+    {
+        for (int i = 0; i < items.length; i++) 
+            {
+                if (itemName.equalsIgnoreCase(items[i])) 
+                {
+                    return i;
+                }
+            
 
-    public static int Find_index_of_item_from_room(String[] items, String itemName) {
-        for (int i = 0; i < items.length; i++) {
-            if (itemName.equalsIgnoreCase(items[i])) {
-                return i;
-            }
 
         }
         return -1;
@@ -410,6 +419,7 @@ public class Game {
 
     }
 
+
     public static void quitCommand() {
 
     }
@@ -429,5 +439,13 @@ public class Game {
 
         keepPlaying = true;
         currentLocation = crewCabin;
+
+
+        
+
+    }
+
+    public static void dumbySetKey(final boolean keyVal) {
+        hasKey = keyVal;
     }
 }

@@ -1,5 +1,4 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Test;
 
@@ -8,7 +7,9 @@ public class GameTests {
     
     @Test 
     public void goDirectionTests() throws Exception {
+
         Game.gameRest();
+        
         Game.setUpGameMap();
 
         assertEquals(Game.crewCabin, Game.currentLocation);
@@ -38,6 +39,13 @@ public class GameTests {
         Game.goCommand("south");
         assertEquals(Game.centralCorridor, Game.currentLocation);
 
+        // Game.goCommand("south");
+        // assertEquals(Game.airlock, Game.currentLocation);
+        // Game.goCommand("down");
+        // assertEquals(Game.escapePod, Game.currentLocation);
+
+
+
     }
 
     @Test 
@@ -61,58 +69,64 @@ public class GameTests {
 
         assertDoesNotThrow(()->{Game.changeLocation(null);});
 
+        // most functions tested in goCommand Tests.
+
 
     }
 
     @Test 
     public void DissalowedMovementTests() throws Exception {
 
-        Game.setUpGameMap();
+
+        Game.gameRest();
+
         assertEquals(Game.crewCabin, Game.currentLocation);
         Game.goCommand("down");
         assertEquals(Game.crewCabin, Game.currentLocation);
 
         Game.goCommand("up");
-        assertEquals(Game.centralCorridor, Game.currentLocation);
+        assertEquals(Game.crewCabin, Game.currentLocation);
         Game.goCommand("left");
-        assertEquals(Game.storageBay, Game.currentLocation);
-
-        Game.goCommand("west");
-        assertEquals(Game.centralCorridor, Game.currentLocation);
-        Game.goCommand("west");
         assertEquals(Game.crewCabin, Game.currentLocation);
 
-        Game.goCommand("east");
-        assertEquals(Game.centralCorridor, Game.currentLocation);
+        Game.goCommand("what");
+        assertEquals(Game.crewCabin, Game.currentLocation);
+
         
-        // Game.goCommand("north");
-        // assertEquals(Game.laboratory, Game.currentLocation);
-        // Game.goCommand("up");
-        // assertEquals(Game.observationDeck, Game.currentLocation);
+        assertEquals("jump is not a valid direction", Game.goCommand("jump"));
+        
+        assertEquals("You cannot go that way", Game.changeLocation(null));
+        assertEquals("You enter the Observation Deck", Game.changeLocation(Game.observationDeck));
 
-        // Game.goCommand("down");
-        // assertEquals(Game.laboratory, Game.currentLocation);
-        // Game.goCommand("south");
-        // assertEquals(Game.centralCorridor, Game.currentLocation);
-
-        // Game.goCommand("south");
-        // assertEquals(Game.airlock, Game.currentLocation);
-        // Game.goCommand("down");
-        // assertEquals(Game.escapePod, Game.currentLocation);
     }
 
     @Test 
     public void KeyMovementTests() throws Exception {
         
+        Game.gameRest();
+        Game.changeLocation(Game.centralCorridor);
+        assertEquals(Game.centralCorridor, Game.currentLocation);
+        assertEquals("Acess denied. You need a key to enter the airlock.", Game.goCommand("south"));
+
+        Game.dumbySetKey(true);
+        assertEquals("You enter the Airlock", Game.goCommand("south"));
+        assertEquals(Game.airlock, Game.currentLocation);
+
+        
     }
 
     @Test 
     public void invalidCommandTests() {
-
+        
     }
 
     @Test 
     public  void validCommands() {
+
+    }
+
+    @Test 
+    public void takeCommandTests() {
 
     }
 
