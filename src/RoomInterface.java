@@ -19,5 +19,7 @@ public interface RoomInterface {
 
     public void setUpRoomConnections();
 
+    
+
     // public RoomInterface goDirection(final String direction) throws IllegalArgumentException; <- maybe later
 }
