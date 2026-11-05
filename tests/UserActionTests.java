@@ -19,6 +19,9 @@ public class UserActionTests {
     public void TestThreeWordParser() throws Exception {
         String[] test = UUtils.CommandParserDummy("take access card");
         assertArrayEquals(new String[] {"take", "access card"}, test);
+
+        test = UUtils.CommandParserDummy("take power cell");
+        assertArrayEquals(new String[] {"take", "power cell"}, test);
     }
 
     // @Test 
