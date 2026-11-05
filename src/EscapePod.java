@@ -51,7 +51,7 @@ public class EscapePod implements RoomInterface {
         String output = this.lookDescription;
         if (items.length() > 0) {
                 for (String item : this.items) {
-                items += "You see a " + item + " in the Escape Pod.\n";
+                items += "You see a " + item + " in the " + name+"\n";
             }
             output += "\n you see" + items + " Around the room";
         }

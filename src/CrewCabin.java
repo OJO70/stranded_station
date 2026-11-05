@@ -12,7 +12,7 @@ public class CrewCabin implements RoomInterface {
     protected boolean keyPresent = false;
 
     protected String name = "Crew Cabin";
-    protected String lookDescription = "You are in the Crew Cabin.";
+    protected String lookDescription = "The ceiling lights flicker weakly... The air is still... You hear the groans of the airvents, as if the station is trying to warn you...\n";
 
     public static String[] items = {"Torch"};
 
@@ -52,7 +52,7 @@ public class CrewCabin implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
-            items += "You see a " + item + " in the Crew Cabin.\n";
+            items += "You see a " + item + " in the " + name + ".\n";
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;
