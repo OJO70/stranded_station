@@ -14,7 +14,6 @@ public class StorageBay implements RoomInterface {
 
     public static String[] items = {"Power Cell"};
 
-    public static String[] items = {"Power Cell"};
 
     @Override
     public void setUpRoomConnections() {
@@ -50,11 +49,8 @@ public class StorageBay implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
-<<<<<<< HEAD
-            items += "You see a " + item + " in the Escape Pod.\n";
-=======
+
             items += "You see a " + item + " in the Storage Bay.\n";
->>>>>>> main
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;
