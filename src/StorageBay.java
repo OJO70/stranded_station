@@ -9,7 +9,10 @@ public class StorageBay implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String lookDescription = "You are in the Storage Bay.";
+    protected String name = "Storage Bay";
+    protected String lookDescription = "A city of boxes tower above you. The generator is tucked behind scrap metal,\nhiding from any prying eyes. A spare power cell looks in surprisingly good condition next to it...\n";
+
+    public static String[] items = {"Power Cell"};
 
     public static String[] items = {"Power Cell"};
 
@@ -47,7 +50,11 @@ public class StorageBay implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
+<<<<<<< HEAD
             items += "You see a " + item + " in the Escape Pod.\n";
+=======
+            items += "You see a " + item + " in the Storage Bay.\n";
+>>>>>>> main
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;
@@ -70,10 +77,19 @@ public class StorageBay implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+        this.keyPresent = false;
     }
 
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
+    }
     
     
 }

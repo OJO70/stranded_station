@@ -3,11 +3,8 @@ public class Game {
     private static boolean hasKey = false;
 
 
-    private static boolean isPlaying = true;
+    private static boolean keepPlaying = true;
 
-    private static boolean keepPlaying;
-
-    private static RoomInterface templateRoom = new RoomTemplate();
 
 
     /* Array to store all rooms */
@@ -19,11 +16,13 @@ public class Game {
     public static RoomInterface airlock = new Airlock();
     public static RoomInterface escapePod = new EscapePod();
 
+    
+
     /*
      * string linked to current location
      * Can be changed to a class call for more genralised code later.
      */
-    private static RoomInterface currentLocation = crewCabin;
+    public  static RoomInterface currentLocation = crewCabin;
 
     /**
      * Initialise the game map by setting up all rooms and their connections.
@@ -56,10 +55,16 @@ public class Game {
     public static boolean gameLoop() {
 
         setUpGameMap();
-        roomIntroduction();
+        
         System.out.println("Welcome to the game!");
+        String priviouseCommand = currentLocation.getLookDescription();
         while (keepPlaying) {
-            UserAction();
+
+            
+            displayToCli(priviouseCommand);
+            priviouseCommand = UserAction();
+
+
             boolean reachedEscapePod = currentLocation == escapePod;
 
             if (keepPlaying && reachedEscapePod) {
@@ -67,20 +72,65 @@ public class Game {
                 return true;
             }
         }
+        return false;
+
+    }
+
+    private static void displayToCli(final String commandOutput) {
+        String print = "";
+        print += "+---------------------------------------------------+\n";
+        if (commandOutput != "" && commandOutput != null) {
+            
+            print += commandOutput + "\n";
+        }
+        print += displayCliInventory();
+        print += cliGameInterface();
+        System.out.print(print);
+    }
+
+    // private static String displayCommandOutput(final String commandOutput) {
+    //     int leng = 49;
+    //     String output = null;
+    //     output  = "+---------------------------------------------------+\n";
+        
+    //     for (int j = 0; j < commandOutput.toCharArray().length; j++) {
+    //         output += " |";
+    //         for (int i = 0; i <= leng && i +j < commandOutput.toCharArray().length; i++) {
+    //             output += String.format("%c", commandOutput.toCharArray()[j + i]);
+                
+    //         }
+    //         output += " |\n";
+    //         j += leng;
+    //     }
+    //     output += " |\n";
+        
+    //     return output;
+    // }
+
+    private static String cliGameInterface() {
+        String output = null;
+        output  = "+---------------------------------------------------+\n";
+        output += "(enter_station|command)[" + currentLocation.getName() + "]++> ";
+        return output;
+    }
+
+    private static String displayCliInventory() {
+        String output = null;
+        int leng = 51;
+        output  = "+---------------------------------------------------+\n";
+
+        for (int i = 0; i < Inventory.inventory.length; i++) {
+            String itemPrint = "| " + Inventory.inventory[i];
+            for (int j = itemPrint.toCharArray().length - 1; j < leng; j++) {
+                itemPrint += " ";
+            }
+            itemPrint += "|\n";
+            output += itemPrint;
+        }
         
 
-        while(keepPlaying){
-        UserAction();
-        boolean reachedEscapePod = currentLocation==escapePod;
-
-        if (keepPlaying&&reachedEscapePod){
-
-            return true;
-        }
-        }
         
-        return false; //double check this quits without winning 
-
+        return output;
     }
 
     /**
@@ -88,8 +138,9 @@ public class Game {
      * 
      * @param direction
      */
-    public static void goCommand(final String direction) {
+    public static String goCommand(final String direction) {
 
+        String output = null;
         RoomInterface nextRoom = null;
         if (direction.equals("north")) {
             nextRoom = currentLocation.getNorth();
@@ -104,46 +155,64 @@ public class Game {
         } else if (direction.equals("down")) {
             nextRoom = currentLocation.getDown();
         } else {
-            System.out.println(direction + " is not a valid direction");
+            output = direction + " is not a valid direction";
         }
-        changeLocation(nextRoom);
+        output = changeLocation(nextRoom);
+        return output;
     }
 
     // Get user input command. Call the parser from utils, with the try and
     // execption. Include while loop. In else if not valid, set string to null;
     // which would do the do while loop again.
-    public static void UserAction() {
+    // public static String UserInput() {
+    //     return 
+    // }
+
+    public static String UserAction() {
+        String output = "";
         String[] input = null;
 
         do {
             try {
                 input = UUtils.CommandParser();
-            } catch (Exception e) {
-                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
-            }
 
-            if (input[0].equals("h")) {
-
+                if (input[0].equals("h")) {
+                
                 MainMenu.ShowCommands();
 
             }
 
             else if (input[0].equals("go")) {
-                goCommand(input[1]);
+
+                output = goCommand(input[1]);
+
+
             }
 
-            else if (input[0].equals("take")) {
 
+            else if (input[0].equals("take")) {
+                takecommand(input[1]);
             }
 
             else if (input[0].equals("look")) {
                 lookCommand();
             }
+            else if (input[0].equals("m")) {
+                Intro.Map_layout();
+                
+            }
+            
+            else if (input[0].equals("help")) {
+                helpCommand();
+            }
 
             else if (input[0].equals("q")) {
                 System.out.println("Goodbye, Thank you for playing");
                 keepPlaying = false;
+            }
 
+            else if (input[0].equals("drop")) {
+                //dropCommand();
             }
 
             // Implement drop in future
@@ -151,7 +220,15 @@ public class Game {
             else {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
+                
+            } catch (Exception e) {
+                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
+            }
+
+            
         } while (input == null);
+
+        return output;
     }
 
     /**
@@ -159,37 +236,36 @@ public class Game {
      * 
      * @param newLocation
      */
-    public static void changeLocation(final RoomInterface newLocation) {
+    public static String changeLocation(final RoomInterface newLocation) {
+        String output = null;
         if (newLocation != null) {
-            // if (newLocation == Game.airlock && !hasKey) {
-            // System.out.println("Acess denied. You need a key to enter the airlock.");
+            if (newLocation == Game.airlock && !hasKey) {
+            output = "Acess denied. You need a key to enter the airlock.";
 
-            // }else {
+            }else {
+            currentLocation = newLocation;
+            output = "You enter the " + currentLocation.getName();
+            }
             // currentLocation = newLocation;
             // roomIntroduction();
-            // }
-            currentLocation = newLocation;
-            roomIntroduction();
 
         } else {
-            System.out.println("You cannot go that way");
+            output = "You cannot go that way";
         }
+        return output;
     }
 
-    /**
-     * Print the introduction for the current room.
-     */
-    public static void roomIntroduction() {
-        System.out.println("You are in a room" + currentLocation.getLookDescription());
-    }
 
     /**
      * Allow a player to look around the room and get a description of the room.
      * 
      * @param direction
      */
-    public static void lookCommand() {
-        System.out.println("You are looking");
+    public static String lookCommand() {
+        String output = "You are looking: ";
+        output += currentLocation.getLookDescription();
+        return output;
+        
     }
 
     /**
@@ -205,22 +281,96 @@ public class Game {
      * 
      * @param direction
      */
-    public static void takeCommand(final String itemName) {
-        if (currentLocation.isKeyPresent() && itemName.equals("key")) {
-            hasKey = true;
-            currentLocation.setKeyPresent(false);
-        } else {
-            System.out.println("There is no " + itemName + " in this room");
+
+
+     public static int Find_index_of_item_from_room(String[] items , String itemName ) 
+    {
+        for (int i = 0; i < items.length; i++) 
+            {
+                if (itemName.equals(items[i])) 
+                {
+                    return i;
+                }
+            
+        }
+        return -1;
+    }
+
+    public static int FindLastEmptySpaceInInventory (String[] inventory) 
+    {
+
+        for(int i = inventory.length -1 ; i >= 0 ; i -- )
+            if (inventory[i] == "") 
+            {
+            return i;
+            }
+        
+        return -1;
+    }
+
+    public static void MoveItemFromSourceToDestination(int source, int dest) throws Exception 
+    {
+
+
+        if (source == -1) 
+        {
+            throw new Exception("Item is not in room");
+        }
+
+        if (dest == -1) 
+        {
+            throw new Exception("Inventory is full");
+        }
+
+        Inventory.inventory[dest] = currentLocation.getItems()[source];
+
+        currentLocation.getItems()[source] = "";
+    }
+
+
+
+        public static void takecommand(final String itemName) throws Exception
+        {
+
+        
+            
+
+            if (currentLocation.isKeyPresent() && itemName.equalsIgnoreCase("Access Card")) {
+                hasKey = true;
+                currentLocation.setKeyPresent(false);
+            } 
+            else 
+            {
+                int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
+                if (itemIndex != -1) {
+                    MoveItemFromSourceToDestination(itemIndex, FindLastEmptySpaceInInventory(Inventory.inventory));
+                }else {
+                    System.out.println("There is no " + itemName + " in this room");
+                }
+                
+            }
+        }
+
+            public static void quitCommand() {
+
+        }
+
+        public static void gameRest() {
+            observationDeck = new ObservationDeck();
+            laboratory = new Laboratory();
+            centralCorridor = new CentralCorridor();
+            crewCabin = new CrewCabin();
+            storageBay = new StorageBay();
+            airlock = new Airlock();
+            escapePod = new EscapePod();
+            setUpGameMap();
+            for (int i = 0; i < Inventory.inventory.length; i++) {
+                Inventory.inventory[i] = "";
+            }
+
+            keepPlaying = true;
+            currentLocation = crewCabin;
         }
     }
 
-    // User iunput/command. if statemen to call relevent method from parser.
 
-    /**
-     * Quit the game.
-     */
-    public static void quitCommand() {
-
-    }
-
-}

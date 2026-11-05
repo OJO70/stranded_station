@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutionException;
 
 public class UUtils {
 
-    private static Scanner stdin = new Scanner(System.in);
+    public static Scanner stdin = new Scanner(System.in);
 
     
 
@@ -41,11 +41,42 @@ public class UUtils {
         String input = stdin.nextLine();
         // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
         String[] splitStr = input.split(" ");
+        String[] output = {"", ""};
 
-        if (splitStr.length >= 0 && splitStr.length <= 2) {
-            return splitStr;
+        if (splitStr.length <= 0) {
+            return output;
         }
-        throw new Exception();
+        
+        output[0] = splitStr[0];
+        
+        
+            for (int i = 1; i < splitStr.length; i++) {
+                output[1] += (i <= 1) ? splitStr[i] : " " + splitStr[i];
+            }
+            return output;
+
+
+    }
+
+    // for testing
+    public static String[] CommandParserDummy(String input) throws Exception {
+
+        //String input = stdin.nextLine();
+        // Split on space. Into array. Commands must be array length 2 elements (1 or 2 because of help). Return array.
+        String[] splitStr = input.split(" ");
+        String[] output = {"", ""};
+
+        if (splitStr.length <= 0) {
+            return output;
+        }
+        
+        output[0] = splitStr[0];
+        
+        
+            for (int i = 1; i < splitStr.length; i++) {
+                output[1] += (i <= 1) ? splitStr[i] : " " + splitStr[i];
+            }
+            return output;
 
     }
     

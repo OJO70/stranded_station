@@ -1,6 +1,7 @@
 
 
 
+
 public class ObservationDeck implements RoomInterface {
 
     protected RoomInterface north = null;
@@ -10,14 +11,17 @@ public class ObservationDeck implements RoomInterface {
     protected RoomInterface up = null;
     protected RoomInterface down = Game.laboratory;
 
-    protected boolean keyPresent = false;
+    protected boolean keyPresent = true;
 
-    protected String lookDescription = "As you look around the observation deck it is deathly quiet...\n";
+    protected String name = "Observation Deck";
+    protected String lookDescription = "As you look around the observation deck it is deathly quiet...\nThe cold emptyness of space floods your view. Nothing for forever...\n";
+
+    public static String[] items = {"Access Card"};
 
     public static String[] items = {"Access Card"};
 
     // Empty room for now.
-    String roomContent = "";
+    String[] roomContent = {"key"};
 
     @Override
     public void setUpRoomConnections() {
@@ -54,7 +58,11 @@ public class ObservationDeck implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
+<<<<<<< HEAD
             items += "You see a " + item + " in the Escape Pod.\n";
+=======
+            items += "You see a " + item + " in the Observation Deck.\n";
+>>>>>>> main
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;
@@ -77,8 +85,20 @@ public class ObservationDeck implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+        this.keyPresent = keyPresent;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
     }
 
     

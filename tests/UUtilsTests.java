@@ -15,6 +15,11 @@ public class UUtilsTests {
 
         UUtils uUtils = new UUtils();
 
-        //????????
+        
+    }
+
+    @Test
+    void parserTests() throws Exception {
+        // assertDoesNotThrow(()->{UUtils.CommandParser();});
     }
 }

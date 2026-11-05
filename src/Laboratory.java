@@ -1,6 +1,7 @@
 
 
 
+
 public class Laboratory implements RoomInterface {
 
     protected RoomInterface north = null;
@@ -12,7 +13,10 @@ public class Laboratory implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String lookDescription = "You are now in the Labroratory.";
+    protected String name = "Labroratory";
+    protected String lookDescription = "The bubbling of test tubes drone on as you step foot in the laboratory.\nThere is an arsenal of equipment scattered accross the room. Looks like everyone left in a hurry...\n";
+
+    public static String[] items = {"Datapad"};
 
     public static String[] items = {"Datapad"};
 
@@ -52,7 +56,11 @@ public class Laboratory implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
+<<<<<<< HEAD
             items += "You see a " + item + " in the Escape Pod.\n";
+=======
+            items += "You see a " + item + " in the Laboratory.\n";
+>>>>>>> main
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;
@@ -76,8 +84,18 @@ public class Laboratory implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+        this.keyPresent = false;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
     }
 
     

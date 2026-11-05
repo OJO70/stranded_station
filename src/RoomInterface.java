@@ -1,3 +1,4 @@
+import javax.print.DocFlavor.STRING;
 
 public interface RoomInterface {
     
@@ -7,8 +8,11 @@ public interface RoomInterface {
     public RoomInterface getWest();
     public RoomInterface getUp();
     public RoomInterface getDown();
+    public String[] getItems();
 
     public String getLookDescription();
+
+    public String getName();
 
     public boolean isKeyPresent();
     public void setKeyPresent(final boolean keyPresent);

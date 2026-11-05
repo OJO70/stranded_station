@@ -9,7 +9,10 @@ public class Airlock implements RoomInterface {
 
     protected boolean keyPresent = false;
 
-    protected String lookDescription = "You are in the Airlock.";
+    protected String name = "Airlock";
+    protected String lookDescription = "The cold steel wall stands tall, a dim amber glow shines at the base of it. It looks like there's a place place an access card here...\n";
+
+    public static String[] items = {""};
 
     
 
@@ -64,8 +67,18 @@ public class Airlock implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+        this.keyPresent = false;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
     }
 
     

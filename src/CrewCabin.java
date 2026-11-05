@@ -2,16 +2,21 @@ public class CrewCabin implements RoomInterface {
 
     protected RoomInterface north = null;
     protected RoomInterface south = null;
-
-    protected RoomInterface east = Game.centralCorridor;
-
+    protected RoomInterface east = Game.centralCorridor;;
     protected RoomInterface west = null;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
+
     protected boolean keyPresent = false;
 
-    protected String lookDescription = "You are in the Crew Cabin.";
+
+
+    protected String name = "Crew Cabin";
+    protected String lookDescription = "The ceiling lights flicker weakly... The air is still... You hear the groans of the airvents, as if the station is trying to warn you...\n";
+
+
+    public static String[] items = {"Torch"};
 
     @Override
     public void setUpRoomConnections() {
@@ -31,6 +36,7 @@ public class CrewCabin implements RoomInterface {
         return this.east;
     }
 
+
     public RoomInterface getWest() {
         return this.west;
     }
@@ -43,8 +49,15 @@ public class CrewCabin implements RoomInterface {
         return this.down;
     }
 
-    public String getLookDescription() {
-        return this.lookDescription;
+    public String getLookDescription() 
+    {
+        String items = "";
+        for (String item : this.items) 
+        {
+            items += "You see a " + item + " in the " + name + ".\n";
+        }
+        String output = this.lookDescription + "\n you see" + items + " Around the room";
+        return output;
     }
 
     public boolean isKeyPresent() {
@@ -64,8 +77,20 @@ public class CrewCabin implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeyPresent'");
+        this.keyPresent = false;
+    }
+
+
+    @Override
+    public String[] getItems() {
+        
+        return this.items;
+    }
+
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     
