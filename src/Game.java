@@ -6,6 +6,38 @@ public class Game {
     private static boolean keepPlaying = true;
 
 
+   public static String examineItem(String itemName) {   
+    
+    for (String item : Inventory.inventory) {
+
+        if (item.equalsIgnoreCase(itemName)) {
+
+            if (item.equalsIgnoreCase("Torch")) {
+                return "A portable light source 🔦.";
+            }
+
+            else if (item.equalsIgnoreCase("Datapad")) {
+                return "A device containing information 📱.";
+            }
+
+            else if (item.equalsIgnoreCase("Power Cell")) {
+                return "A portable energy source 🔋.";
+            }
+
+            else if(item.equalsIgnoreCase("Access Card")){
+                return "A card that grants access to restricted areas 🔑.";
+            }
+
+            return "No description available."; // Just incase another item is added.
+        }
+    }
+
+    return "You don't have that item.";
+}
+
+
+
+
 
     /* Array to store all rooms */
     public static RoomInterface observationDeck = new ObservationDeck();
@@ -142,17 +174,17 @@ public class Game {
 
         String output = null;
         RoomInterface nextRoom = null;
-        if (direction.equals("north")) {
+        if (direction.equalsIgnoreCase("north")) {
             nextRoom = currentLocation.getNorth();
-        } else if (direction.equals("south")) {
+        } else if (direction.equalsIgnoreCase("south")) {
             nextRoom = currentLocation.getSouth();
-        } else if (direction.equals("east")) {
+        } else if (direction.equalsIgnoreCase("east")) {
             nextRoom = currentLocation.getEast();
-        } else if (direction.equals("west")) {
+        } else if (direction.equalsIgnoreCase("west")) {
             nextRoom = currentLocation.getWest();
-        } else if (direction.equals("up")) {
+        } else if (direction.equalsIgnoreCase("up")) {
             nextRoom = currentLocation.getUp();
-        } else if (direction.equals("down")) {
+        } else if (direction.equalsIgnoreCase("down")) {
             nextRoom = currentLocation.getDown();
         } else {
             output = direction + " is not a valid direction";
@@ -177,7 +209,7 @@ public class Game {
                 input = UUtils.CommandParser();
 
                 if (input[0].equals("h")) {
-                
+
                 MainMenu.ShowCommands();
 
             }
@@ -190,29 +222,34 @@ public class Game {
             }
 
 
-            else if (input[0].equals("take")) {
+            else if (input[0].equalsIgnoreCase("take")) {
                 takecommand(input[1]);
             }
 
+
             else if (input[0].equals("look")) {
                 output = lookCommand();
+
             }
-            else if (input[0].equals("m")) {
+            else if (input[0].equalsIgnoreCase("m")) {
                 Intro.Map_layout();
                 
             }
             
-            else if (input[0].equals("help")) {
-                helpCommand();
+            else if (input[0].equalsIgnoreCase("examine")) {
+                System.out.println(examineItem(input[1]));
             }
 
-            else if (input[0].equals("q")) {
+
+            else if (input[0].equalsIgnoreCase("q")) {
                 System.out.println("Goodbye, Thank you for playing");
                 keepPlaying = false;
             }
 
+
             else if (input[0].equals("drop")) {
                 dropCommand(input[1]);
+
             }
 
             // Implement drop in future
@@ -287,7 +324,7 @@ public class Game {
     {
         for (int i = 0; i < items.length; i++) 
             {
-                if (itemName.equals(items[i])) 
+                if (itemName.equalsIgnoreCase(items[i])) 
                 {
                     return i;
                 }

@@ -47,6 +47,8 @@ public class MainMenu {
         System.out.println("🔼 up           down 🔽");
         System.out.println("[q] - Exits the program");
         System.out.println("[m] - For Map 🗺️ ");
+        
+
 
     }
 
