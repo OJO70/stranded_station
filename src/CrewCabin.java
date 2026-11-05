@@ -7,12 +7,13 @@ public class CrewCabin implements RoomInterface {
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
-    protected String name = "Crew Cabin";
 
     protected boolean keyPresent = false;
 
+
     protected String name = "Crew Cabin";
     protected String lookDescription = "The ceiling lights flicker weakly... The air is still... You hear the groans of the airvents, as if the station is trying to warn you...\n";
+
 
     public static String[] items = {"Torch"};
 
@@ -78,19 +79,18 @@ public class CrewCabin implements RoomInterface {
         this.keyPresent = false;
     }
 
+
     @Override
     public String[] getItems() {
         
         return this.items;
     }
 
+
     @Override
     public String getName() {
         return this.name;
     }
-    
-
-
 
     
     
