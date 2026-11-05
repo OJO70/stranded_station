@@ -155,7 +155,7 @@ public class Game {
         } else if (direction.equals("down")) {
             nextRoom = currentLocation.getDown();
         } else {
-            output = direction + " is not a valid direction";
+            return direction + " is not a valid direction";
         }
         output = changeLocation(nextRoom);
         return output;
