@@ -281,6 +281,12 @@ public class Game {
             }
         }
 
+        public static void dropCommand(final String itemName) throws Exception {
+
+            MoveItemFromSourceToDestination(Find_index_of_item_from_room(Inventory.inventory, itemName), FindLastEmptySpaceInInventory(currentLocation.getItems()));
+
+        }
+
             public static void quitCommand() {
 
         }
