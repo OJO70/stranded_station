@@ -7,10 +7,11 @@ public class CentralCorridor implements RoomInterface {
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
+
     protected boolean keyPresent = false;
 
     protected String name = "Central Corridor";
-    protected String lookDescription = "You are in the Central Corridor.";
+    protected String lookDescription = "The seemingly endless room stares back at you, daring for you to venture down it's floor. You see blank terminal screens sit idley as the feeling of dread sinks in further.\n";
 
     public static String[] items = { "" };
 
