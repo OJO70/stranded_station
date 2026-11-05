@@ -14,6 +14,8 @@ public class Airlock implements RoomInterface {
 
     public static String[] items = {"", "", "", "", ""};
 
+    
+
     @Override
     public void setUpRoomConnections() {
         this.north = Game.centralCorridor;

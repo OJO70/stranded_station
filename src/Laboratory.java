@@ -16,7 +16,9 @@ public class Laboratory implements RoomInterface {
     protected String name = "Labroratory";
     protected String lookDescription = "The bubbling of test tubes drone on as you step foot in the laboratory.\nThere is an arsenal of equipment scattered accross the room. Looks like everyone left in a hurry...\n";
 
+
     public static String[] items = {"Datapad", "", "", "", ""};
+
 
     @Override
     public void setUpRoomConnections() {
@@ -55,10 +57,12 @@ public class Laboratory implements RoomInterface {
         for (String item : this.items) 
         {
             items += "You see a " + item + " in the Laboratory.\n";
+
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;
     }
+
 
     public boolean isKeyPresent() {
         return this.keyPresent;

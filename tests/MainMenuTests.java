@@ -11,7 +11,7 @@ public class MainMenuTests {
     }
 
 
-    // TEST 2: Check minimum valid menu choice (1)
+    // TEST 2: Check minimum valid menu choice 1
     @Test
     void testMinimumValidChoice() throws Exception {
         UUtils.stdin = new Scanner("1\n");
@@ -22,7 +22,7 @@ public class MainMenuTests {
     }
 
 
-    // TEST 3: Check maximum valid menu choice (4)
+    // TEST 3: Check maximum valid menu choice 4
     @Test
     void testMaximumValidChoice() throws Exception {
         UUtils.stdin = new Scanner("4\n");
@@ -33,7 +33,7 @@ public class MainMenuTests {
     }
 
 
-    // TEST 4: Reject a number below 0
+    // TEST 4: rejecting zero
     @Test
     void testBelowMinimumChoice() throws Exception {
         UUtils.stdin = new Scanner("0\n2\n"); //presses 0 then 2 

@@ -2,8 +2,8 @@ public class StorageBay implements RoomInterface {
 
     protected RoomInterface north = null;
     protected RoomInterface south = null;
-    protected RoomInterface east = null;
-    protected RoomInterface west = Game.centralCorridor;
+    protected RoomInterface east = Game.centralCorridor;
+    protected RoomInterface west = null;
     protected RoomInterface up = null;
     protected RoomInterface down = null;
 
@@ -13,6 +13,7 @@ public class StorageBay implements RoomInterface {
     protected String lookDescription = "A city of boxes tower above you. The generator is tucked behind scrap metal,\nhiding from any prying eyes. A spare power cell looks in surprisingly good condition next to it...\n";
 
     public static String[] items = {"Power Cell", "", "", "", ""};
+
 
     @Override
     public void setUpRoomConnections() {
@@ -48,6 +49,7 @@ public class StorageBay implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
+
             items += "You see a " + item + " in the Storage Bay.\n";
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";

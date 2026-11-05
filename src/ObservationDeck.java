@@ -18,6 +18,7 @@ public class ObservationDeck implements RoomInterface {
 
     public static String[] items = {"Access Card", "", "", "", ""};
 
+
     // Empty room for now.
     String[] roomContent = {"key"};
 
@@ -56,7 +57,9 @@ public class ObservationDeck implements RoomInterface {
         String items = "";
         for (String item : this.items) 
         {
+
             items += "You see a " + item + " in the Observation Deck.\n";
+
         }
         String output = this.lookDescription + "\n you see" + items + " Around the room";
         return output;
