@@ -46,6 +46,20 @@ public class GameTests {
     }
 
     @Test 
+    public void setupMapTest() {
+
+    }
+
+    @Test 
+    public void userActionTests() {
+        Game.gameRest();
+
+        assertEquals(new CrewCabin().getLookDescription(), Game.lookCommand());
+    }
+
+
+
+    @Test 
     public void changeLocationTests() throws Exception {
         Game.setUpGameMap();
         Game.currentLocation = Game.crewCabin;
@@ -58,10 +72,57 @@ public class GameTests {
     @Test 
     public void DissalowedMovementTests() throws Exception {
 
+        Game.setUpGameMap();
+        assertEquals(Game.crewCabin, Game.currentLocation);
+        Game.goCommand("down");
+        assertEquals(Game.crewCabin, Game.currentLocation);
+
+        Game.goCommand("up");
+        assertEquals(Game.centralCorridor, Game.currentLocation);
+        Game.goCommand("left");
+        assertEquals(Game.storageBay, Game.currentLocation);
+
+        Game.goCommand("west");
+        assertEquals(Game.centralCorridor, Game.currentLocation);
+        Game.goCommand("west");
+        assertEquals(Game.crewCabin, Game.currentLocation);
+
+        Game.goCommand("east");
+        assertEquals(Game.centralCorridor, Game.currentLocation);
+        
+        Game.goCommand("north");
+        assertEquals(Game.laboratory, Game.currentLocation);
+        Game.goCommand("up");
+        assertEquals(Game.observationDeck, Game.currentLocation);
+
+        Game.goCommand("down");
+        assertEquals(Game.laboratory, Game.currentLocation);
+        Game.goCommand("south");
+        assertEquals(Game.centralCorridor, Game.currentLocation);
+
+        Game.goCommand("south");
+        assertEquals(Game.airlock, Game.currentLocation);
+        Game.goCommand("down");
+        assertEquals(Game.escapePod, Game.currentLocation);
     }
 
     @Test 
     public void KeyMovementTests() throws Exception {
+        
+    }
+
+    @Test 
+    public void invalidCommandTests() {
+
+    }
+
+    @Test 
+    public  void validCommands() {
+
+    }
+
+    @Test 
+    public void displayTests() {
 
     }
 }
