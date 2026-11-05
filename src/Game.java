@@ -4,35 +4,44 @@ public class Game {
 
     private static boolean keepPlaying = true;
 
+    public static String examineItem(String itemName) {
 
-   public static String examineItem(String itemName) {   
-    
-    for (String item : Inventory.inventory) {
+        // realised when i type "examine "" or " " it needs to be accounted for as its
+        // going straight to last return statement try isempty."
 
-        if (item.equalsIgnoreCase(itemName)) {
+        itemName = itemName.trim(); // Remove leading and trailing whitespace
 
-            if (item.equalsIgnoreCase("Torch")) {
-                return "A portable light source 🔦.";
-            }
-
-            else if (item.equalsIgnoreCase("Datapad")) {
-                return "A device containing information 📱.";
-            }
-
-            else if (item.equalsIgnoreCase("Power Cell")) {
-                return "A portable energy source 🔋.";
-            }
-
-            else if(item.equalsIgnoreCase("Access Card")){
-                return "A card that grants access to restricted areas 🔑.";
-            }
-
-            return "No description available."; // Just incase another item is added.
+        if (itemName.isBlank()) { // note for myself: this method it checks that there are no visible characters
+                                  // where as isempty allows for whitespace to be present.
+            return "Please specify an item to examine.";
         }
-    }
 
-    return "You don't have that item.";
-}
+        for (String item : Inventory.inventory) {
+
+            if (item.equalsIgnoreCase(itemName)) {
+
+                if (item.equalsIgnoreCase("Torch")) {
+                    return "A portable light source 🔦.";
+                }
+
+                else if (item.equalsIgnoreCase("Datapad")) {
+                    return "A device containing information 📱.";
+                }
+
+                else if (item.equalsIgnoreCase("Power Cell")) {
+                    return "A portable energy source 🔋.";
+                }
+
+                else if (item.equalsIgnoreCase("Access Card")) {
+                    return "A card that grants access to restricted areas 🔑.";
+                }
+
+                return "No description available."; // Just incase another item is added.
+            }
+        }
+
+        return "You don't have that item.";
+    }
 
     /* Array to store all rooms */
     public static RoomInterface observationDeck = new ObservationDeck();
@@ -203,53 +212,41 @@ public class Game {
 
                 if (input[0].equals("h")) {
 
-
-
-
-
                     MainMenu.ShowCommands();
 
                 }
 
-                else if (input[0].equals("go")) {
+                else if (input[0].equalsIgnoreCase("go")) {
 
                     output = goCommand(input[1]);
 
                 }
 
+                else if (input[0].equalsIgnoreCase("take")) {
+                    takecommand(input[1]);
+                }
 
+                else if (input[0].equalsIgnoreCase("look")) {
+                    output = lookCommand();
 
+                } else if (input[0].equalsIgnoreCase("m")) {
+                    Intro.Map_layout();
 
-            else if (input[0].equalsIgnoreCase("take")) {
-                takecommand(input[1]);
-            }
+                }
 
+                else if (input[0].equalsIgnoreCase("examine")) {
+                    System.out.println(examineItem(input[1]));
+                }
 
-            else if (input[0].equals("look")) {
-                output = lookCommand();
+                else if (input[0].equalsIgnoreCase("q")) {
+                    System.out.println("Goodbye, Thank you for playing");
+                    keepPlaying = false;
+                }
 
-            }
-            else if (input[0].equalsIgnoreCase("m")) {
-                Intro.Map_layout();
-                
-            }
-            
-            else if (input[0].equalsIgnoreCase("examine")) {
-                System.out.println(examineItem(input[1]));
-            }
+                else if (input[0].equalsIgnoreCase("drop")) {
+                    dropCommand(input[1]);
 
-
-            else if (input[0].equalsIgnoreCase("q")) {
-                System.out.println("Goodbye, Thank you for playing");
-                keepPlaying = false;
-            }
-
-
-            else if (input[0].equals("drop")) {
-                dropCommand(input[1]);
-
-            }
-
+                }
 
                 else {
                     System.out.printf("Not a valid command. Please press \"h\" for help.\n");
@@ -311,15 +308,11 @@ public class Game {
      * 
      * @param direction
      */
-     public static int Find_index_of_item_from_room(String[] items , String itemName ) 
-    {
-        for (int i = 0; i < items.length; i++) 
-            {
-                if (itemName.equalsIgnoreCase(items[i])) 
-                {
-                    return i;
-                }
-            
+    public static int Find_index_of_item_from_room(String[] items, String itemName) {
+        for (int i = 0; i < items.length; i++) {
+            if (itemName.equalsIgnoreCase(items[i])) {
+                return i;
+            }
 
         }
         return -1;
