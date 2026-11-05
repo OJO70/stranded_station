@@ -1,6 +1,7 @@
 public class Game {
     /* Does the player have the key? */
     private static boolean hasKey = false;
+    private static boolean hasCell = false;
 
 
     private static boolean keepPlaying = true;
@@ -101,7 +102,13 @@ public class Game {
 
             boolean reachedEscapePod = currentLocation == escapePod;
 
-            if (keepPlaying && reachedEscapePod) {
+            boolean winable = false;
+
+            if (reachedEscapePod && hasCell) {
+                winable = true;
+            }
+
+            if (keepPlaying && winable) {
 
                 return true;
             }
@@ -397,6 +404,9 @@ public class Game {
                 hasKey = true;
                 currentLocation.setKeyPresent(false);
             } 
+            else if (itemName.equals("Power Cell")) {
+                hasCell = true;
+            }
             else 
             {
                 int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
