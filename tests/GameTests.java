@@ -183,4 +183,20 @@ public void testExamineItemNotOwned() {
 
 }
 
+
+// TEST 7 Mixed capitalisation
+@Test
+public void testExamineMixedCase() {
+    Inventory.inventory[0] = "Torch";
+
+    String result = Game.examineItem("tOrCh");
+
+    assertEquals("A portable light source 🔦.", result);
+}
+
+
+
+
+
+
 }

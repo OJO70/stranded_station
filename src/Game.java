@@ -434,7 +434,6 @@ public class Game {
                 FindLastEmptySpaceInInventory(currentLocation.getItems()));
 
         if (itemName.equalsIgnoreCase("access card")) {
-        if (itemName.equalsIgnoreCase("access card")) {
             hasKey = false;
             currentLocation.setKeyPresent(true);
         }
