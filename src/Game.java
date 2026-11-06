@@ -8,6 +8,16 @@ public class Game {
 
     public static String examineItem(String itemName) {
 
+        // realised when i type "examine "" or " " it needs to be accounted for as its
+        // going straight to last return statement try isempty."
+
+        itemName = itemName.trim(); // Remove leading and trailing whitespace
+
+        if (itemName.isBlank()) { // note for myself: this method it checks that there are no visible characters
+                                  // where as isempty allows for whitespace to be present.
+            return "Please specify an item to examine.";
+        }
+
         for (String item : Inventory.inventory) {
 
             if (item.equalsIgnoreCase(itemName)) {
@@ -149,9 +159,10 @@ public class Game {
                     if((charArr[endOfLinePonter] + "").equals("\n")) {
                         multiLine = true;
                         output += " ";
-                        endOfLinePonter++;
+                        //endOfLinePonter++;
                     }else {
                         output += "" + charArr[endOfLinePonter];
+                        
                     }
                     endOfLinePonter++;
                 }else {
@@ -241,7 +252,7 @@ public class Game {
             try {
                 input = UUtils.CommandParser();
 
-                if (input[0].equals("h")) {
+                if (input[0].equalsIgnoreCase("h")) {
 
 
                     MainMenu.ShowCommands();
@@ -252,10 +263,10 @@ public class Game {
 
                     output = goCommand(input[1]);
 
+                } else if (input[0].equalsIgnoreCase("m")) {
+                    Intro.Map_layout();
 
                 }
-
-
                 else if (input[0].equalsIgnoreCase("take")) {
                     output = "you try to pickup: " + input[1];
                     takecommand(input[1]);
@@ -271,7 +282,7 @@ public class Game {
                 }
 
                 else if (input[0].equalsIgnoreCase("examine")) {
-                    System.out.println(examineItem(input[1]));
+                    output = examineItem(input[1]);
                 }
 
                 else if (input[0].equalsIgnoreCase("q")) {
@@ -306,8 +317,8 @@ public class Game {
     public static String changeLocation(final RoomInterface newLocation) {
         String output = null;
         if (newLocation != null) {
-            if (newLocation == Game.airlock && !hasKey) {
-                output = "Acess denied. You need a key to enter the airlock.";
+            if (((newLocation == Game.airlock) || (currentLocation == Game.airlock && newLocation == centralCorridor))  && !hasKey ) {
+                output = "Acess denied. You need a key to open the Airlock door.";
 
             } else {
                 currentLocation = newLocation;
@@ -345,15 +356,11 @@ public class Game {
      * 
      * @param direction
      */
-     public static int Find_index_of_item_from_room(String[] items , String itemName ) 
-    {
-        for (int i = 0; i < items.length; i++) 
-            {
-                if (itemName.equalsIgnoreCase(items[i])) 
-                {
-                    return i;
-                }
-            
+    public static int Find_index_of_item_from_room(String[] items, String itemName) {
+        for (int i = 0; i < items.length; i++) {
+            if (itemName.equalsIgnoreCase(items[i])) {
+                return i;
+            }
 
 
         }
@@ -426,6 +433,7 @@ public class Game {
         MoveItemFromDestinationToSource(Find_index_of_item_from_room(Inventory.inventory, itemName),
                 FindLastEmptySpaceInInventory(currentLocation.getItems()));
 
+        if (itemName.equalsIgnoreCase("access card")) {
         if (itemName.equalsIgnoreCase("access card")) {
             hasKey = false;
             currentLocation.setKeyPresent(true);
