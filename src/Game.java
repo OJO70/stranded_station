@@ -244,7 +244,7 @@ public class Game {
             try {
                 input = UUtils.CommandParser();
 
-                if (input[0].equals("h")) {
+                if (input[0].equalsIgnoreCase("h")) {
 
 
                     MainMenu.ShowCommands();
