@@ -78,7 +78,7 @@ public class StorageBay implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        this.keyPresent = false;
+        this.keyPresent = keyPresent;
     }
 
     @Override
