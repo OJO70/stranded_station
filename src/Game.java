@@ -6,6 +6,16 @@ public class Game {
 
     public static String examineItem(String itemName) {
 
+        // realised when i type "examine "" or " " it needs to be accounted for as its
+        // going straight to last return statement try isempty."
+
+        itemName = itemName.trim(); // Remove leading and trailing whitespace
+
+        if (itemName.isBlank()) { // note for myself: this method it checks that there are no visible characters
+                                  // where as isempty allows for whitespace to be present.
+            return "Please specify an item to examine.";
+        }
+
         for (String item : Inventory.inventory) {
 
             if (item.equalsIgnoreCase(itemName)) {
@@ -245,8 +255,8 @@ public class Game {
 
                     output = goCommand(input[1]);
 
-
-                }
+                } else if (input[0].equalsIgnoreCase("m")) {
+                    Intro.Map_layout();
 
 
                 else if (input[0].equalsIgnoreCase("take")) {
@@ -264,7 +274,7 @@ public class Game {
                 }
 
                 else if (input[0].equalsIgnoreCase("examine")) {
-                    System.out.println(examineItem(input[1]));
+                    output = examineItem(input[1]);
                 }
 
                 else if (input[0].equalsIgnoreCase("q")) {
@@ -338,15 +348,11 @@ public class Game {
      * 
      * @param direction
      */
-     public static int Find_index_of_item_from_room(String[] items , String itemName ) 
-    {
-        for (int i = 0; i < items.length; i++) 
-            {
-                if (itemName.equalsIgnoreCase(items[i])) 
-                {
-                    return i;
-                }
-            
+    public static int Find_index_of_item_from_room(String[] items, String itemName) {
+        for (int i = 0; i < items.length; i++) {
+            if (itemName.equalsIgnoreCase(items[i])) {
+                return i;
+            }
 
 
         }
