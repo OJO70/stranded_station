@@ -10,7 +10,7 @@ public class EscapePod implements RoomInterface {
     protected boolean keyPresent = false;
 
     protected String name = "Escape Pod";
-    protected String lookDescription = "You are in the Escape Pod.";
+    protected String lookDescription = "You are in the Escape Pod, The Pod's Power Cell appears damaged.";
 
 
     public static String[] items = {"", "", "", "", ""};

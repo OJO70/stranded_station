@@ -92,7 +92,7 @@ public class MainMenu {
  
        if (read_menu_number == 1)
        {
- 
+        
  
            Intro.Intro();
            Intro.Tutorial();
@@ -105,18 +105,18 @@ public class MainMenu {
                System.out.println("Please press \"1\" to start the game or \"2\" to return to main menu");
  
  
+               
                int start_game = new UUtils().consoleInt();
- 
  
                if (start_game == 1)
                {
- 
- 
-                   boolean exitCondition = Game.gameLoop();
-                   if (exitCondition)
+                Count_down.countdown();
+                if(Count_down.gameOver == false );
+                {
+                    boolean exitCondition = Game.gameLoop();
+                    if (exitCondition)
                    {
-                       Outro.OutroForQuittingOrWinning()
-                       ;
+                       Outro.OutroForQuittingOrWinning();
                    }
                    else
                   {
@@ -124,9 +124,12 @@ public class MainMenu {
                       return;
                   }
                 return;
- 
- 
-               }
+                }
+                
+                }
+
+
+
                    if (start_game == 2)
                    {
                    MainMenu();
@@ -134,10 +137,11 @@ public class MainMenu {
  
  
                    }
+                }
+            }
  
- 
-           }
-       }
+           
+       
            else if (read_menu_number == 2)
            {
                ShowCommands();
@@ -196,7 +200,7 @@ public class MainMenu {
                 return;
                }
        }
-}
+    }
  
  
 
