@@ -42,3 +42,4 @@ Use the following commands while playing the game:
 
 - Additional commands and gameplay features will be added in future releases.
 - Some items can be examined after being collected using the `examine <item name>` command.
+
