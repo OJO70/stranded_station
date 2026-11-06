@@ -151,9 +151,10 @@ public class Game {
                     if((charArr[endOfLinePonter] + "").equals("\n")) {
                         multiLine = true;
                         output += " ";
-                        endOfLinePonter++;
+                        //endOfLinePonter++;
                     }else {
                         output += "" + charArr[endOfLinePonter];
+                        
                     }
                     endOfLinePonter++;
                 }else {
@@ -243,7 +244,7 @@ public class Game {
             try {
                 input = UUtils.CommandParser();
 
-                if (input[0].equals("h")) {
+                if (input[0].equalsIgnoreCase("h")) {
 
 
                     MainMenu.ShowCommands();
@@ -257,7 +258,7 @@ public class Game {
                 } else if (input[0].equalsIgnoreCase("m")) {
                     Intro.Map_layout();
 
-
+                }
                 else if (input[0].equalsIgnoreCase("take")) {
                     output = "you try to pickup: " + input[1];
                     takecommand(input[1]);
@@ -308,8 +309,8 @@ public class Game {
     public static String changeLocation(final RoomInterface newLocation) {
         String output = null;
         if (newLocation != null) {
-            if (newLocation == Game.airlock && !hasKey) {
-                output = "Acess denied. You need a key to enter the airlock.";
+            if (((newLocation == Game.airlock) || (currentLocation == Game.airlock && newLocation == centralCorridor))  && !hasKey ) {
+                output = "Acess denied. You need a key to open the Airlock door.";
 
             } else {
                 currentLocation = newLocation;
@@ -403,15 +404,13 @@ public class Game {
         if (currentLocation.isKeyPresent() && itemName.equalsIgnoreCase("Access Card")) {
             hasKey = true;
             currentLocation.setKeyPresent(false);
-        } else {
-            int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
+        }
+        int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
             if (itemIndex != -1) {
                 MoveItemFromSourceToDestination(itemIndex, FindLastEmptySpaceInInventory(Inventory.inventory));
             } else {
                 System.out.println("There is no " + itemName + " in this room");
             }
-
-        }
     }
 
     public static void dropCommand(final String itemName) throws Exception {
@@ -419,7 +418,7 @@ public class Game {
         MoveItemFromDestinationToSource(Find_index_of_item_from_room(Inventory.inventory, itemName),
                 FindLastEmptySpaceInInventory(currentLocation.getItems()));
 
-        if (itemName.equals("access card")) {
+        if (itemName.equalsIgnoreCase("access card")) {
             hasKey = false;
             currentLocation.setKeyPresent(true);
         }
