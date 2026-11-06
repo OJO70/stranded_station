@@ -258,7 +258,7 @@ public class Game {
                 } else if (input[0].equalsIgnoreCase("m")) {
                     Intro.Map_layout();
 
-
+                }
                 else if (input[0].equalsIgnoreCase("take")) {
                     output = "you try to pickup: " + input[1];
                     takecommand(input[1]);
