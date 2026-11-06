@@ -81,7 +81,7 @@ public class EscapePod implements RoomInterface {
 
     @Override
     public void setKeyPresent(boolean keyPresent) {
-        this.keyPresent = false;
+        this.keyPresent = keyPresent;
     }
 
     @Override
