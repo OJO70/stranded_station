@@ -4,35 +4,34 @@ public class Game {
 
     private static boolean keepPlaying = true;
 
+    public static String examineItem(String itemName) {
 
-   public static String examineItem(String itemName) {   
-    
-    for (String item : Inventory.inventory) {
+        for (String item : Inventory.inventory) {
 
-        if (item.equalsIgnoreCase(itemName)) {
+            if (item.equalsIgnoreCase(itemName)) {
 
-            if (item.equalsIgnoreCase("Torch")) {
-                return "A portable light source 🔦.";
+                if (item.equalsIgnoreCase("Torch")) {
+                    return "A portable light source 🔦.";
+                }
+
+                else if (item.equalsIgnoreCase("Datapad")) {
+                    return "A device containing information 📱.";
+                }
+
+                else if (item.equalsIgnoreCase("Power Cell")) {
+                    return "A portable energy source 🔋.";
+                }
+
+                else if (item.equalsIgnoreCase("Access Card")) {
+                    return "A card that grants access to restricted areas 🔑.";
+                }
+
+                return "No description available."; // Just incase another item is added.
             }
-
-            else if (item.equalsIgnoreCase("Datapad")) {
-                return "A device containing information 📱.";
-            }
-
-            else if (item.equalsIgnoreCase("Power Cell")) {
-                return "A portable energy source 🔋.";
-            }
-
-            else if(item.equalsIgnoreCase("Access Card")){
-                return "A card that grants access to restricted areas 🔑.";
-            }
-
-            return "No description available."; // Just incase another item is added.
         }
-    }
 
-    return "You don't have that item.";
-}
+        return "You don't have that item.";
+    }
 
     /* Array to store all rooms */
     public static RoomInterface observationDeck = new ObservationDeck();
@@ -104,57 +103,90 @@ public class Game {
 
     private static void displayToCli(final String commandOutput) {
         String print = "";
-        print += "+---------------------------------------------------+\n";
+        print += "\n\n\n+=============================================================+\n" +
+                "|>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>T<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<|\n";
         if (commandOutput != "" && commandOutput != null) {
 
-            print += commandOutput + "\n";
+
+            // print += commandOutput + "\n";
+            print += displayCommandOutput(commandOutput);
         }
         print += displayCliInventory();
         print += cliGameInterface();
         System.out.print(print);
     }
 
-    // private static String displayCommandOutput(final String commandOutput) {
-    // int leng = 49;
-    // String output = null;
-    // output = "+---------------------------------------------------+\n";
-
-    // for (int j = 0; j < commandOutput.toCharArray().length; j++) {
-    // output += " |";
-    // for (int i = 0; i <= leng && i +j < commandOutput.toCharArray().length; i++)
-    // {
-    // output += String.format("%c", commandOutput.toCharArray()[j + i]);
-
-    // }
-    // output += " |\n";
-    // j += leng;
-    // }
-    // output += " |\n";
-
-    // return output;
-    // }
-
     private static String cliGameInterface() {
         String output = null;
-        output = "+---------------------------------------------------+\n";
+        output = "+-------------------------------------------------------------+\n";
         output += "(enter_station|command)[" + currentLocation.getName() + "]++> ";
         return output;
     }
 
-    private static String displayCliInventory() {
-        String output = null;
-        int leng = 51;
-        output = "+---------------------------------------------------+\n";
 
-        for (int i = 0; i < Inventory.inventory.length; i++) {
-            String itemPrint = "| " + Inventory.inventory[i];
-            for (int j = itemPrint.toCharArray().length - 1; j < leng; j++) {
-                itemPrint += " ";
+    private static String displayCommandOutput(final String commandOutput) {
+        int leng = 58;
+        String output = null;
+        output = "+-------------------------------------------------------------+\n";
+        char[] charArr = commandOutput.toCharArray();
+        int endOfLinePonter = 0;
+        while (endOfLinePonter < charArr.length) {
+            output += "| ";
+            boolean multiLine = false;
+            
+            for (int i = 0; i <= leng; i++) {
+                
+                if (!multiLine && endOfLinePonter < charArr.length) {
+                    
+                    if((charArr[endOfLinePonter] + "").equals("\n")) {
+                        multiLine = true;
+                        output += " ";
+                        endOfLinePonter++;
+                    }else {
+                        output += "" + charArr[endOfLinePonter];
+                    }
+                    endOfLinePonter++;
+                }else {
+                    output += " ";
+                }
+                
+                
             }
-            itemPrint += "|\n";
-            output += itemPrint;
+            output += " |\n";
+            
         }
 
+        return output;
+    }
+
+
+    private static String displayCliInventory() {
+        String output = null;
+
+        int leng = 61;
+        int currEmpty = 0;
+        output = "+-------------------------------------------------------------+\n" +
+                 "|                           Inventory.                        |\n" +
+                 "+-------------------------------------------------------------+\n";
+
+        for (int i = 0; i < Inventory.inventory.length; i++) {
+            if (Inventory.inventory[i] != "") {
+                String itemPrint = "| >>> " + Inventory.inventory[i];
+                for (int j = itemPrint.toCharArray().length - 1; j < leng; j++) {
+                    itemPrint += " ";
+                }
+                itemPrint += "|\n";
+                output += itemPrint;
+            } else {
+                currEmpty++;
+            }
+
+
+        }
+
+        if (currEmpty == Inventory.inventory.length) {
+            output += "|>>>>>>>>>--------------------NO-ITEMS---------------<<<<<<<<<|\n";
+        }
         return output;
     }
 
@@ -204,57 +236,51 @@ public class Game {
                 if (input[0].equals("h")) {
 
 
-
-
-
                     MainMenu.ShowCommands();
 
                 }
 
-                else if (input[0].equals("go")) {
+                else if (input[0].equalsIgnoreCase("go")) {
 
                     output = goCommand(input[1]);
+
 
                 }
 
 
+                else if (input[0].equalsIgnoreCase("take")) {
+                    output = "you try to pickup: " + input[1];
+                    takecommand(input[1]);
+                }
 
 
-            else if (input[0].equalsIgnoreCase("take")) {
-                takecommand(input[1]);
-            }
+                else if (input[0].equalsIgnoreCase("look")) {
+                    output = lookCommand();
 
+                } else if (input[0].equalsIgnoreCase("m")) {
+                    Intro.Map_layout();
 
-            else if (input[0].equals("look")) {
-                output = lookCommand();
+                }
 
-            }
-            else if (input[0].equalsIgnoreCase("m")) {
-                Intro.Map_layout();
-                
-            }
-            
-            else if (input[0].equalsIgnoreCase("examine")) {
-                System.out.println(examineItem(input[1]));
-            }
+                else if (input[0].equalsIgnoreCase("examine")) {
+                    System.out.println(examineItem(input[1]));
+                }
 
+                else if (input[0].equalsIgnoreCase("q")) {
+                    System.out.println("Goodbye, Thank you for playing");
+                    keepPlaying = false;
+                }
 
-            else if (input[0].equalsIgnoreCase("q")) {
-                System.out.println("Goodbye, Thank you for playing");
-                keepPlaying = false;
-            }
+                else if (input[0].equals("drop")) {
+                    dropCommand(input[1]);
 
+                }
 
-            else if (input[0].equals("drop")) {
-                dropCommand(input[1]);
-
-            }
-
+                // Implement drop in future
 
                 else {
                     System.out.printf("Not a valid command. Please press \"h\" for help.\n");
                 }
-
             } catch (Exception e) {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
@@ -320,6 +346,7 @@ public class Game {
                     return i;
                 }
             
+
 
         }
         return -1;
@@ -395,6 +422,11 @@ public class Game {
 
     }
 
+
+    public static void quitCommand() {
+
+    }
+
     public static void gameRest() {
         observationDeck = new ObservationDeck();
         laboratory = new Laboratory();
@@ -406,12 +438,13 @@ public class Game {
         setUpGameMap();
         for (int i = 0; i < Inventory.inventory.length; i++) {
             Inventory.inventory[i] = "";
-
         }
 
-    }
+        keepPlaying = true;
+        currentLocation = crewCabin;
 
-    public static void quitCommand() {
+
+        
 
     }
 
