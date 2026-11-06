@@ -8,6 +8,7 @@ public class GameTests {
     @Test
     public void goDirectionTests() throws Exception {
         Game.setUpGameMap();
+
         assertEquals(Game.crewCabin, Game.currentLocation);
         Game.goCommand("down");
         assertEquals(Game.crewCabin, Game.currentLocation);
