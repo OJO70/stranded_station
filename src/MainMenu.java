@@ -38,7 +38,7 @@ public class MainMenu {
            int choice = new UUtils().consoleInt();
  
  
-           if (choice >= 1 && choice <= MenuChoices) {
+           if (choice >= 1 && choice <= MenuChoices) { //input validation for menu choices. If not valid, loop back and ask for input again.
  
  
                return choice;
