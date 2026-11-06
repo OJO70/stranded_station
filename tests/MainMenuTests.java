@@ -97,6 +97,20 @@ public class MainMenuTests {
 
         assertEquals(3, result);
     }
+
+    // TEST 10 Mixed capitalisation
+@Test
+public void testExamineMixedCase() {
+    Inventory.inventory[0] = "Torch";
+
+    String result = Game.examineItem("tOrCh");
+
+    assertEquals("A portable light source 🔦.", result);
+}
+
+
+
+
 }
 
 
