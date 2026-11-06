@@ -115,8 +115,7 @@ public class MainMenu {
                    boolean exitCondition = Game.gameLoop();
                    if (exitCondition)
                    {
-                       Outro.OutroForQuittingOrWinning()
-                       ;
+                       Outro.OutroForQuittingOrWinning(exitCondition);
                    }
                    else
                   {

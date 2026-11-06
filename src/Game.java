@@ -1,6 +1,8 @@
 public class Game {
     /* Does the player have the key? */
     private static boolean hasKey = false;
+    private static boolean hasCell = false;
+
 
     private static boolean keepPlaying = true;
 
@@ -102,7 +104,13 @@ public class Game {
 
             boolean reachedEscapePod = currentLocation == escapePod;
 
-            if (keepPlaying && reachedEscapePod) {
+            boolean winable = false;
+
+            if (reachedEscapePod && hasCell) {
+                winable = true;
+            }
+
+            if (keepPlaying && winable) {
 
                 return true;
             }
@@ -401,17 +409,24 @@ public class Game {
 
     public static void takecommand(final String itemName) throws Exception {
 
-        if (currentLocation.isKeyPresent() && itemName.equalsIgnoreCase("Access Card")) {
-            hasKey = true;
-            currentLocation.setKeyPresent(false);
-        }
-        int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
-            if (itemIndex != -1) {
-                MoveItemFromSourceToDestination(itemIndex, FindLastEmptySpaceInInventory(Inventory.inventory));
-            } else {
-                System.out.println("There is no " + itemName + " in this room");
+            if (currentLocation.isKeyPresent() && itemName.equalsIgnoreCase("Access Card")) {
+                hasKey = true;
+                currentLocation.setKeyPresent(false);
+            } 
+            if (itemName.equalsIgnoreCase("Power Cell")) {
+                hasCell = true;
             }
-    }
+             
+            
+                int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
+                if (itemIndex != -1) {
+                    MoveItemFromSourceToDestination(itemIndex, FindLastEmptySpaceInInventory(Inventory.inventory));
+                }else {
+                    System.out.println("There is no " + itemName + " in this room");
+                }
+                
+            
+        }
 
     public static void dropCommand(final String itemName) throws Exception {
 
@@ -419,8 +434,12 @@ public class Game {
                 FindLastEmptySpaceInInventory(currentLocation.getItems()));
 
         if (itemName.equalsIgnoreCase("access card")) {
+        if (itemName.equalsIgnoreCase("access card")) {
             hasKey = false;
             currentLocation.setKeyPresent(true);
+        }
+        if (itemName.equalsIgnoreCase("power cell")) {
+            hasCell = false;
         }
 
         // Find_index_of_item_from_room(null, itemName)
