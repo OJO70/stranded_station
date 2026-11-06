@@ -11,6 +11,7 @@ public class GameTests {
         Game.gameRest();
         
         Game.setUpGameMap();
+
         assertEquals(Game.crewCabin, Game.currentLocation);
         Game.goCommand("down");
         assertEquals(Game.crewCabin, Game.currentLocation);
