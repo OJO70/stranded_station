@@ -16,6 +16,10 @@ public class EscapePod implements RoomInterface {
     public static String[] items = {"", "", "", "", ""};
 
 
+    public EscapePod() {
+        items = new String[] {"", "", "", "", ""};
+    }
+
     @Override
     public void setUpRoomConnections() {
         this.up = Game.airlock;
@@ -46,17 +50,17 @@ public class EscapePod implements RoomInterface {
         return this.down;
     }
 
-    public String getLookDescription() {
+    public String getLookDescription() 
+    {
         String items = "";
-        String output = this.lookDescription;
-        if (items.length() > 0) {
-                for (String item : this.items) {
-                items += "You see a " + item + " in the " + name+"\n";
+        for (String item : this.items) 
+        {
+            if (!item.equals("")) {
+                items += "You see a " + item + " in the " + name + ".\n";
             }
-            output += "\n you see" + items + " Around the room";
+            
         }
-        
-        
+        String output = this.lookDescription + "\n" + items;
         return output;
     }
 

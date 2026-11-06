@@ -6,39 +6,34 @@ public class Game {
 
     private static boolean keepPlaying = true;
 
+    public static String examineItem(String itemName) {
 
-   public static String examineItem(String itemName) {   
-    
-    for (String item : Inventory.inventory) {
+        for (String item : Inventory.inventory) {
 
-        if (item.equalsIgnoreCase(itemName)) {
+            if (item.equalsIgnoreCase(itemName)) {
 
-            if (item.equalsIgnoreCase("Torch")) {
-                return "A portable light source 🔦.";
+                if (item.equalsIgnoreCase("Torch")) {
+                    return "A portable light source 🔦.";
+                }
+
+                else if (item.equalsIgnoreCase("Datapad")) {
+                    return "A device containing information 📱.";
+                }
+
+                else if (item.equalsIgnoreCase("Power Cell")) {
+                    return "A portable energy source 🔋.";
+                }
+
+                else if (item.equalsIgnoreCase("Access Card")) {
+                    return "A card that grants access to restricted areas 🔑.";
+                }
+
+                return "No description available."; // Just incase another item is added.
             }
-
-            else if (item.equalsIgnoreCase("Datapad")) {
-                return "A device containing information 📱.";
-            }
-
-            else if (item.equalsIgnoreCase("Power Cell")) {
-                return "A portable energy source 🔋.";
-            }
-
-            else if(item.equalsIgnoreCase("Access Card")){
-                return "A card that grants access to restricted areas 🔑.";
-            }
-
-            return "No description available."; // Just incase another item is added.
         }
+
+        return "You don't have that item.";
     }
-
-    return "You don't have that item.";
-}
-
-
-
-
 
     /* Array to store all rooms */
     public static RoomInterface observationDeck = new ObservationDeck();
@@ -49,13 +44,11 @@ public class Game {
     public static RoomInterface airlock = new Airlock();
     public static RoomInterface escapePod = new EscapePod();
 
-    
-
     /*
      * string linked to current location
      * Can be changed to a class call for more genralised code later.
      */
-    public  static RoomInterface currentLocation = crewCabin;
+    public static RoomInterface currentLocation = crewCabin;
 
     /**
      * Initialise the game map by setting up all rooms and their connections.
@@ -90,15 +83,14 @@ public class Game {
         setUpGameMap();
         gameRest();
         keepPlaying = true;
-        
+        hasKey = false;
+
         System.out.println("Welcome to the game!");
         String priviouseCommand = currentLocation.getLookDescription();
         while (keepPlaying) {
 
-            
             displayToCli(priviouseCommand);
             priviouseCommand = UserAction();
-
 
             boolean reachedEscapePod = currentLocation == escapePod;
 
@@ -119,58 +111,90 @@ public class Game {
 
     private static void displayToCli(final String commandOutput) {
         String print = "";
-        print += "+---------------------------------------------------+\n";
+        print += "\n\n\n+=============================================================+\n" +
+                "|>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>T<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<|\n";
         if (commandOutput != "" && commandOutput != null) {
-            
-            print += commandOutput + "\n";
+
+
+            // print += commandOutput + "\n";
+            print += displayCommandOutput(commandOutput);
         }
         print += displayCliInventory();
         print += cliGameInterface();
         System.out.print(print);
     }
 
-    // private static String displayCommandOutput(final String commandOutput) {
-    //     int leng = 49;
-    //     String output = null;
-    //     output  = "+---------------------------------------------------+\n";
-        
-    //     for (int j = 0; j < commandOutput.toCharArray().length; j++) {
-    //         output += " |";
-    //         for (int i = 0; i <= leng && i +j < commandOutput.toCharArray().length; i++) {
-    //             output += String.format("%c", commandOutput.toCharArray()[j + i]);
-                
-    //         }
-    //         output += " |\n";
-    //         j += leng;
-    //     }
-    //     output += " |\n";
-        
-    //     return output;
-    // }
-
     private static String cliGameInterface() {
         String output = null;
-        output  = "+---------------------------------------------------+\n";
+        output = "+-------------------------------------------------------------+\n";
         output += "(enter_station|command)[" + currentLocation.getName() + "]++> ";
         return output;
     }
 
+
+    private static String displayCommandOutput(final String commandOutput) {
+        int leng = 58;
+        String output = null;
+        output = "+-------------------------------------------------------------+\n";
+        char[] charArr = commandOutput.toCharArray();
+        int endOfLinePonter = 0;
+        while (endOfLinePonter < charArr.length) {
+            output += "| ";
+            boolean multiLine = false;
+            
+            for (int i = 0; i <= leng; i++) {
+                
+                if (!multiLine && endOfLinePonter < charArr.length) {
+                    
+                    if((charArr[endOfLinePonter] + "").equals("\n")) {
+                        multiLine = true;
+                        output += " ";
+                        endOfLinePonter++;
+                    }else {
+                        output += "" + charArr[endOfLinePonter];
+                    }
+                    endOfLinePonter++;
+                }else {
+                    output += " ";
+                }
+                
+                
+            }
+            output += " |\n";
+            
+        }
+
+        return output;
+    }
+
+
     private static String displayCliInventory() {
         String output = null;
-        int leng = 51;
-        output  = "+---------------------------------------------------+\n";
+
+        int leng = 61;
+        int currEmpty = 0;
+        output = "+-------------------------------------------------------------+\n" +
+                 "|                           Inventory.                        |\n" +
+                 "+-------------------------------------------------------------+\n";
 
         for (int i = 0; i < Inventory.inventory.length; i++) {
-            String itemPrint = "| " + Inventory.inventory[i];
-            for (int j = itemPrint.toCharArray().length - 1; j < leng; j++) {
-                itemPrint += " ";
+            if (Inventory.inventory[i] != "") {
+                String itemPrint = "| >>> " + Inventory.inventory[i];
+                for (int j = itemPrint.toCharArray().length - 1; j < leng; j++) {
+                    itemPrint += " ";
+                }
+                itemPrint += "|\n";
+                output += itemPrint;
+            } else {
+                currEmpty++;
             }
-            itemPrint += "|\n";
-            output += itemPrint;
-        }
-        
 
-        
+
+        }
+
+        if (currEmpty == Inventory.inventory.length) {
+            output += "|>>>>>>>>>--------------------NO-ITEMS---------------<<<<<<<<<|\n";
+        }
         return output;
     }
 
@@ -196,7 +220,7 @@ public class Game {
         } else if (direction.equalsIgnoreCase("down")) {
             nextRoom = currentLocation.getDown();
         } else {
-            output = direction + " is not a valid direction";
+            return direction + " is not a valid direction";
         }
         output = changeLocation(nextRoom);
         return output;
@@ -206,7 +230,7 @@ public class Game {
     // execption. Include while loop. In else if not valid, set string to null;
     // which would do the do while loop again.
     // public static String UserInput() {
-    //     return 
+    // return
     // }
 
     public static String UserAction() {
@@ -219,59 +243,56 @@ public class Game {
 
                 if (input[0].equals("h")) {
 
-                MainMenu.ShowCommands();
 
-            }
+                    MainMenu.ShowCommands();
 
-            else if (input[0].equals("go")) {
+                }
 
-                output = goCommand(input[1]);
+                else if (input[0].equalsIgnoreCase("go")) {
 
-
-            }
+                    output = goCommand(input[1]);
 
 
-            else if (input[0].equalsIgnoreCase("take")) {
-                takecommand(input[1]);
-            }
+                }
 
 
-            else if (input[0].equals("look")) {
-                output = lookCommand();
-
-            }
-            else if (input[0].equalsIgnoreCase("m")) {
-                Intro.Map_layout();
-                
-            }
-            
-            else if (input[0].equalsIgnoreCase("examine")) {
-                System.out.println(examineItem(input[1]));
-            }
+                else if (input[0].equalsIgnoreCase("take")) {
+                    output = "you try to pickup: " + input[1];
+                    takecommand(input[1]);
+                }
 
 
-            else if (input[0].equalsIgnoreCase("q")) {
-                System.out.println("Goodbye, Thank you for playing");
-                keepPlaying = false;
-            }
+                else if (input[0].equalsIgnoreCase("look")) {
+                    output = lookCommand();
 
+                } else if (input[0].equalsIgnoreCase("m")) {
+                    Intro.Map_layout();
 
-            else if (input[0].equals("drop")) {
-                dropCommand(input[1]);
+                }
 
-            }
+                else if (input[0].equalsIgnoreCase("examine")) {
+                    System.out.println(examineItem(input[1]));
+                }
 
-            // Implement drop in future
+                else if (input[0].equalsIgnoreCase("q")) {
+                    System.out.println("Goodbye, Thank you for playing");
+                    keepPlaying = false;
+                }
 
-            else {
-                System.out.printf("Not a valid command. Please press \"h\" for help.\n");
-            }
-                
+                else if (input[0].equals("drop")) {
+                    dropCommand(input[1]);
+
+                }
+
+                // Implement drop in future
+
+                else {
+                    System.out.printf("Not a valid command. Please press \"h\" for help.\n");
+                }
             } catch (Exception e) {
                 System.out.printf("Not a valid command. Please press \"h\" for help.\n");
             }
 
-            
         } while (input == null);
 
         return output;
@@ -286,21 +307,18 @@ public class Game {
         String output = null;
         if (newLocation != null) {
             if (newLocation == Game.airlock && !hasKey) {
-            output = "Acess denied. You need a key to enter the airlock.";
+                output = "Acess denied. You need a key to enter the airlock.";
 
-            }else {
-            currentLocation = newLocation;
-            output = "You enter the " + currentLocation.getName();
+            } else {
+                currentLocation = newLocation;
+                output = "You enter the " + currentLocation.getName();
             }
-            // currentLocation = newLocation;
-            // roomIntroduction();
 
         } else {
             output = "You cannot go that way";
         }
         return output;
     }
-
 
     /**
      * Allow a player to look around the room and get a description of the room.
@@ -311,7 +329,7 @@ public class Game {
         String output = "You are looking: ";
         output += currentLocation.getLookDescription();
         return output;
-        
+
     }
 
     /**
@@ -327,8 +345,6 @@ public class Game {
      * 
      * @param direction
      */
-
-
      public static int Find_index_of_item_from_room(String[] items , String itemName ) 
     {
         for (int i = 0; i < items.length; i++) 
@@ -338,33 +354,29 @@ public class Game {
                     return i;
                 }
             
+
+
         }
         return -1;
     }
 
-    public static int FindLastEmptySpaceInInventory (String[] inventory) 
-    {
+    public static int FindLastEmptySpaceInInventory(String[] inventory) {
 
-        for(int i = inventory.length -1 ; i >= 0 ; i -- )
-            if (inventory[i] == "") 
-            {
-            return i;
+        for (int i = inventory.length - 1; i >= 0; i--)
+            if (inventory[i] == "") {
+                return i;
             }
-        
+
         return -1;
     }
 
-    public static void MoveItemFromSourceToDestination(int source, int dest) throws Exception 
-    {
+    public static void MoveItemFromSourceToDestination(int source, int dest) throws Exception {
 
-
-        if (source == -1) 
-        {
+        if (source == -1) {
             throw new Exception("Item is not in room");
         }
 
-        if (dest == -1) 
-        {
+        if (dest == -1) {
             throw new Exception("Inventory is full");
         }
 
@@ -373,17 +385,13 @@ public class Game {
         currentLocation.getItems()[source] = "";
     }
 
-    public static void MoveItemFromDestinationToSource(int source, int dest) throws Exception 
-    {
+    public static void MoveItemFromDestinationToSource(int source, int dest) throws Exception {
 
-
-        if (source == -1) 
-        {
+        if (source == -1) {
             throw new Exception("Item is not in room");
         }
 
-        if (dest == -1) 
-        {
+        if (dest == -1) {
             throw new Exception("Inventory is full");
         }
 
@@ -392,13 +400,7 @@ public class Game {
         Inventory.inventory[source] = "";
     }
 
-
-
-        public static void takecommand(final String itemName) throws Exception
-        {
-
-        
-            
+    public static void takecommand(final String itemName) throws Exception {
 
             if (currentLocation.isKeyPresent() && itemName.equalsIgnoreCase("Access Card")) {
                 hasKey = true;
@@ -419,39 +421,47 @@ public class Game {
             }
         }
 
-        public static void dropCommand(final String itemName) throws Exception {
+    public static void dropCommand(final String itemName) throws Exception {
 
-            MoveItemFromDestinationToSource(Find_index_of_item_from_room(Inventory.inventory, itemName), FindLastEmptySpaceInInventory(currentLocation.getItems()));
+        MoveItemFromDestinationToSource(Find_index_of_item_from_room(Inventory.inventory, itemName),
+                FindLastEmptySpaceInInventory(currentLocation.getItems()));
 
-            if (itemName.equals("access card")) {
-                hasKey = false;
-                currentLocation.setKeyPresent(true);
-            }
-
-            // Find_index_of_item_from_room(null, itemName)
-
+        if (itemName.equals("access card")) {
+            hasKey = false;
+            currentLocation.setKeyPresent(true);
         }
 
-            public static void quitCommand() {
+        // Find_index_of_item_from_room(null, itemName)
 
-        }
-
-        public static void gameRest() {
-            observationDeck = new ObservationDeck();
-            laboratory = new Laboratory();
-            centralCorridor = new CentralCorridor();
-            crewCabin = new CrewCabin();
-            storageBay = new StorageBay();
-            airlock = new Airlock();
-            escapePod = new EscapePod();
-            setUpGameMap();
-            for (int i = 0; i < Inventory.inventory.length; i++) {
-                Inventory.inventory[i] = "";
-            }
-
-            keepPlaying = true;
-            currentLocation = crewCabin;
-        }
     }
 
 
+    public static void quitCommand() {
+
+    }
+
+    public static void gameRest() {
+        observationDeck = new ObservationDeck();
+        laboratory = new Laboratory();
+        centralCorridor = new CentralCorridor();
+        crewCabin = new CrewCabin();
+        storageBay = new StorageBay();
+        airlock = new Airlock();
+        escapePod = new EscapePod();
+        setUpGameMap();
+        for (int i = 0; i < Inventory.inventory.length; i++) {
+            Inventory.inventory[i] = "";
+        }
+
+        keepPlaying = true;
+        currentLocation = crewCabin;
+
+
+        
+
+    }
+
+    public static void dumbySetKey(final boolean keyVal) {
+        hasKey = keyVal;
+    }
+}
