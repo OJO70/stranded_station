@@ -8,7 +8,6 @@ public class GameTests {
     @Test
     public void goDirectionTests() throws Exception {
         Game.setUpGameMap();
-
         assertEquals(Game.crewCabin, Game.currentLocation);
         Game.goCommand("down");
         assertEquals(Game.crewCabin, Game.currentLocation);
@@ -148,23 +147,53 @@ public class GameTests {
 
 
     // TEST 3 Spaces on both sides of Access Card
-@Test
-public void testExamineSurroundingSpaces() {
+    @Test
+    public void testExamineSurroundingSpaces() {
     Inventory.inventory[2] = "Access Card";
 
     String result = Game.examineItem("   Access Card   ");
 
     assertEquals("A card that grants access to restricted areas 🔑.", result);
 
-}
+    }
 
-// TEST 4 Tab only
-@Test
-public void testExamineTabOnly() {
+    // TEST 4 Tab only
+    @Test
+    public void testExamineTabOnly() {
     String result = Game.examineItem("\t");
 
     assertEquals("Please specify an item to examine.", result);
 }
+
+//TEST 5 AN ITEM THAT DOESNT EXIST
+@Test 
+public void testExamineInvalidItem() {
+    String result = Game.examineItem("CHELSEA!");
+
+    assertEquals("You don't have that item.", result);
+}
+
+
+// TEST 6 Item exists in game but isn't in the players inventory yet.
+@Test
+public void testExamineItemNotOwned() {
+    String result = Game.examineItem("Access Card");
+
+
+
+}
+
+
+// TEST 7 Mixed capitalisation
+@Test
+public void testExamineMixedCase() {
+    Inventory.inventory[0] = "Torch";
+
+    String result = Game.examineItem("tOrCh");
+
+    assertEquals("A portable light source 🔦.", result);
+}
+
 
 
 
