@@ -406,11 +406,11 @@ public class Game {
                 hasKey = true;
                 currentLocation.setKeyPresent(false);
             } 
-            else if (itemName.equals("Power Cell")) {
+            if (itemName.equalsIgnoreCase("Power Cell")) {
                 hasCell = true;
             }
-            else 
-            {
+             
+            
                 int itemIndex = Find_index_of_item_from_room(currentLocation.getItems(), itemName);
                 if (itemIndex != -1) {
                     MoveItemFromSourceToDestination(itemIndex, FindLastEmptySpaceInInventory(Inventory.inventory));
@@ -418,7 +418,7 @@ public class Game {
                     System.out.println("There is no " + itemName + " in this room");
                 }
                 
-            }
+            
         }
 
     public static void dropCommand(final String itemName) throws Exception {
@@ -426,9 +426,12 @@ public class Game {
         MoveItemFromDestinationToSource(Find_index_of_item_from_room(Inventory.inventory, itemName),
                 FindLastEmptySpaceInInventory(currentLocation.getItems()));
 
-        if (itemName.equals("access card")) {
+        if (itemName.equalsIgnoreCase("access card")) {
             hasKey = false;
             currentLocation.setKeyPresent(true);
+        }
+        if (itemName.equalsIgnoreCase("power cell")) {
+            hasCell = false;
         }
 
         // Find_index_of_item_from_room(null, itemName)
