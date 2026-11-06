@@ -141,9 +141,10 @@ public class Game {
                     if((charArr[endOfLinePonter] + "").equals("\n")) {
                         multiLine = true;
                         output += " ";
-                        endOfLinePonter++;
+                        //endOfLinePonter++;
                     }else {
                         output += "" + charArr[endOfLinePonter];
+                        
                     }
                     endOfLinePonter++;
                 }else {
